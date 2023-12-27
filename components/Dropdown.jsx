@@ -1,9 +1,10 @@
-const Dropdown = ({ submenus, dropdown }) => {
+import Link from "next/link"
+const Dropdown = ({ submenus, dropdown, setDropdown }) => {
   return (
     <ul className={`dropdown ${dropdown ? 'show' : ''}`}>
       {submenus.map((submenu, index) => (
         <li key={index} className="menu-items">
-          <a href={submenu.url}>{submenu.title}</a>
+          <Link href={submenu.url} onClick={() => setDropdown((prev) => !prev)}>{submenu.title}</Link>
         </li>
       ))}
     </ul>

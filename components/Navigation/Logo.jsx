@@ -50,7 +50,7 @@ const Logo = () => {
           display: showButton ? "block" : "none",
         }}
       >
-        <Button />
+        {/* <Button /> */}
       </div>
     </>
   );

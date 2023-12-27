@@ -47,11 +47,11 @@ const Navbar = ({toggle}) => {
             </button>
             <ul className="desktop-nav menus hidden gap-x-6 text-xl text-white md:flex">
               {menuItemsData.map((menu, index) => {
-                return <MenuItems items={menu} key={index} />;
+                return <MenuItems items={menu} key={index}/>;
               })}
             </ul>
             <div className="hidden md:block">
-              <Button />
+              {/* <Button /> */}
             </div>
           </div>
         </div>

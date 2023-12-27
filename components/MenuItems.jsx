@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Dropdown from './Dropdown'
 
-const MenuItems = ({ items }) => {
+const MenuItems = ({ items, toggle }) => {
   const [dropdown, setDropdown] = useState(false)
   return (
     <li className="menu-items">
@@ -15,7 +15,7 @@ const MenuItems = ({ items }) => {
           >
             {items.title}{' '}
           </button>
-          <Dropdown submenus={items.submenu} dropdown={dropdown}/>
+          <Dropdown submenus={items.submenu} dropdown={dropdown} setDropdown={setDropdown}/>
         </>
       ) : (
         <a href={items.url}>{items.title}</a>

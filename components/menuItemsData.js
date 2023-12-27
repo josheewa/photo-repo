@@ -1,6 +1,6 @@
 export const menuItemsData = [
     {
-      title: 'Gallery',
+      title: 'Gallery', //▲ ▼
       url: '/',
       submenu: [
         {
@@ -10,6 +10,10 @@ export const menuItemsData = [
         {
           title: 'Landscape',
           url: 'landscape',
+        },
+        {
+          title: 'City',
+          url: 'city',
         },
         {
           title: 'Flowers',
