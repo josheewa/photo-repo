@@ -1,6 +1,7 @@
-import Document, { Head, Html, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 // import Navbar from '../components/Navigation/navbar'
-import Navigation from "../components/Navigation";
+import Navigation from '../components/Navigation'
+// import About from "./about"
 
 class MyDocument extends Document {
   render() {
@@ -14,14 +15,13 @@ class MyDocument extends Document {
           <meta property="og:title" content="Photo Gallery" />
         </Head>
         <body className="bg-black antialiased">
-          {/* <Navbar></Navbar> */}
-          <Navigation />
+          {/* <Navigation /> */}
           <Main />
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument

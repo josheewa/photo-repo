@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React from "react";
 import Link from "next/link";
 import Button from "./Button";
@@ -6,7 +6,7 @@ import Logo from "./Logo";
 import MenuItems from "../MenuItems";
 import { menuItemsData } from "../menuItemsData";
 
-const Navbar = (toggle) => {
+const Navbar = ({toggle}) => {
   return (
     <>
       <div className="sticky top-0 z-10 h-20 w-full bg-gray-800">
@@ -50,23 +50,6 @@ const Navbar = (toggle) => {
                 return <MenuItems items={menu} key={index} />;
               })}
             </ul>
-            {/* <ul className="hidden gap-x-6 text-xl text-white md:flex">
-              <li>
-                <Link href="/">
-                  <p>Gallery</p>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about">
-                  <p>About</p>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact">
-                  <p>Contact</p>
-                </Link>
-              </li>
-            </ul> */}
             <div className="hidden md:block">
               <Button />
             </div>

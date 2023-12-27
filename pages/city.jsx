@@ -43,7 +43,6 @@ const Home = ({ images }) => {
           />
         )}
 
-        <Navbar></Navbar>
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
@@ -60,7 +59,7 @@ const Home = ({ images }) => {
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/collections/city/${public_id}.${format}`}
+                // src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/collections/city/${public_id}.${format}`}
                 width={720}
                 height={480}
                 sizes="(max-width: 640px) 100vw,
