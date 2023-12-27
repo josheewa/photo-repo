@@ -1,4 +1,4 @@
-// import { NextPage } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
 import { ImageProps } from "../utils/types";
 import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
 import Carousel from "../components/Carousel";
+import Navbar from "../components/Navigation/navbar";
 
 const Home = ({ images }) => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const Home = ({ images }) => {
           />
         )}
 
+        <Navbar></Navbar>
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
@@ -58,13 +60,13 @@ const Home = ({ images }) => {
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder="blur"
                 blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
+                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/collections/city/${public_id}.${format}`}
                 width={720}
                 height={480}
                 sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
+            (max-width: 1280px) 50vw,
+            (max-width: 1536px) 33vw,
+            25vw"
               />
             </Link>
           ))}
