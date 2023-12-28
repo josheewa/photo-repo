@@ -19,6 +19,10 @@ export const menuItemsData = [
           title: 'Flowers',
           url: 'flowers',
         },
+        {
+          title: 'Astro',
+          url: 'astro',
+        },
       ],
     },
     {
