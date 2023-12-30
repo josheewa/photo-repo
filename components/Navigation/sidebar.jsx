@@ -1,47 +1,41 @@
-import Link from 'next/link'
+import React, { useEffect, useRef } from 'react'
+import { menuItemsData } from './menuItemsData'
+import MobileMenuItems from './MobileMenuItems'
 
-const Sidebar = ({ isOpen, toggle }) => {
+const Sidebar = ({ isOpen, setIsOpen, toggle }) => {
+  let ref = useRef()
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (isOpen && ref.current && !ref.current.contains(event.target)) {
+        setIsOpen(false)
+        // toggle()
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    document.addEventListener('touchstart', handler)
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', handler)
+      document.removeEventListener('touchstart', handler)
+    }
+  }, [isOpen])
   return (
     <>
       <div
-        className="sidebar-container fixed left-0 z-10 grid h-full w-full justify-center overflow-hidden bg-white pt-[120px]"
+        className="mobile-nav" // sidebar-container ${isOpen ? 'top-0 opacity-100' : '-top-full opacity-0'} fixed left-0 z-10 grid h-full w-full justify-center overflow-hidden bg-white pt-[120px]"
         style={{
           opacity: `${isOpen ? '1' : '0'}`,
           top: ` ${isOpen ? '0' : '-100%'}`,
-        }}
-      >
-        <button className="absolute right-0 p-5" onClick={toggle}>
-          {/* Close icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
-            />
-          </svg>
-        </button>
-
-        <ul className="sidebar-nav text-center text-xl leading-relaxed">
-          <li>
-            <Link href="/about" onClick={toggle}>
-              <p>About Us</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/services" onClick={toggle}>
-              <p>Services</p>
-            </Link>
-          </li>
-          <li>
-            <Link href="/contacts" onClick={toggle}>
-              <p>Contacts</p>
-            </Link>
-          </li>
-        </ul>
+          color: 'black',
+        }}>
+        {isOpen && (
+          <ul className="menus" ref={ref}>
+            {menuItemsData.map((menu, index) => {
+              return <MobileMenuItems items={menu} key={index} />
+            })}
+          </ul>
+        )}
       </div>
     </>
   )

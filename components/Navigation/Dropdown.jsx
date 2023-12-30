@@ -4,7 +4,7 @@ const Dropdown = ({ submenus, dropdown, setDropdown }) => {
     <ul className={`dropdown ${dropdown ? 'show' : ''}`}>
       {submenus.map((submenu, index) => (
         <li key={index} className="menu-items">
-          <Link href={submenu.url} onClick={() => setDropdown((prev) => !prev)}>{submenu.title}</Link>
+          <Link href={submenu.url} onClick={() => setDropdown(!dropdown)}>{submenu.title}</Link>
         </li>
       ))}
     </ul>
