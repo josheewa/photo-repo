@@ -42,7 +42,7 @@ const Home = ({ images }) => {
           />
         )}
 
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
+        <div className="img-container columns-2 gap-4 sm:columns-3 xl:columns-4 2xl:columns-5">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link
               key={id}
