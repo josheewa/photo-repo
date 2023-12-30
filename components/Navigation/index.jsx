@@ -6,7 +6,7 @@ import MobileMenuItems from './MobileMenuItems'
 import { menuItemsData } from './menuItemsData'
 
 const Navigation = () => {
-  // Toggle sidebar
+  // Toggle mobile menu
   const [isOpen, setIsOpen] = useState(false)
   const sideRef = useRef(null)
   const buttonRef = useRef(null)
@@ -60,40 +60,38 @@ const Navigation = () => {
     <>
       {/* Main navbar for desktop */}
       <div className="nav-container sticky top-0 z-10 h-20 w-full bg-gray-900 shadow-lg">
-        <div className="container mx-auto h-full px-4">
-          <div className="flex h-full items-center justify-between">
-            <Logo />
-            <div className="nav item-container">
-              <ul className="menus hidden gap-x-6 text-xl text-white md:flex">
-                {menuItemsData.map((menu, index) => {
-                  return <MenuItems items={menu} key={index} />
-                })}
-              </ul>
-            </div>
-
-            {/* Placeholder for layout of navbar items, to be modified to potential contact dropdown*/}
-            <div className="hidden md:block">{/* <Button /> */}</div>
-
-            <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
-              <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 18L20 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                <path d="M4 12L20 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-                <path d="M4 6L20 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile navbar */}
-        <div className="mobile-nav ${isOpen ? '' : 'hidden'} text-black">
-          {isOpen && (
-            <ul className="menus" ref={sideRef}>
+        <div className="container mx-auto h-full px-4 flex items-center justify-between">
+          <Logo className="fixed left-0" />
+          <div className="nav item-container flex-grow">
+            <ul className="menus hidden gap-x-6 text-xl text-white md:flex items-center justify-center">
               {menuItemsData.map((menu, index) => {
-                return <MobileMenuItems items={menu} key={index} />
+                return <MenuItems items={menu} key={index} />;
               })}
             </ul>
-          )}
+          </div>
+
+          {/* Placeholder for layout of navbar items, to be modified to potential contact dropdown*/}
+          <div className="hidden md:block">{/* <Button /> */}</div>
+
+          <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
+            <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 18L20 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              <path d="M4 12L20 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              <path d="M4 6L20 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
+      </div>
+
+      {/* Mobile navbar */}
+      <div className={`mobile-nav ${isOpen ? '' : 'hidden'} text-black`}>
+        {isOpen && (
+          <ul className="menus" ref={sideRef}>
+            {menuItemsData.map((menu, index) => {
+              return <MobileMenuItems items={menu} key={index} setIsOpen={setIsOpen}/>;
+            })}
+          </ul>
+        )}
       </div>
     </>
   )

@@ -1,7 +1,7 @@
 export const menuItemsData = [
     {
       title: 'Gallery', //▲ ▼
-      url: '/',
+      url: '',
       submenu: [
         {
           title: 'All',
