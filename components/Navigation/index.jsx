@@ -49,17 +49,10 @@ const Navigation = () => {
       }
     }
 
-    // Handle both click and touch events
     document.addEventListener('mousedown', handleClick)
-
-    // Attach touch events only on mobile devices
-    if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
-      document.addEventListener('touchend', handleClick)
-    }
 
     return () => {
       document.removeEventListener('mousedown', handleClick)
-      document.removeEventListener('touchend', handleClick)
     }
   }, [])
 
@@ -82,12 +75,7 @@ const Navigation = () => {
             <div className="hidden md:block">{/* <Button /> */}</div>
 
             <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+              <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 18L20 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
                 <path d="M4 12L20 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
                 <path d="M4 6L20 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
