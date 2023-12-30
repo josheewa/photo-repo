@@ -28,7 +28,6 @@ const Navigation = () => {
         sideRef.current &&
         !sideRef.current.contains(event.target)
       ) {
-        // setIsOpen(false)
         if (!isHandlingClick) {
           setIsOpen(false)
         }
@@ -98,7 +97,7 @@ const Navigation = () => {
         </div>
 
         {/* Mobile navbar */}
-        <div className="mobile-nav ${isOpen ? 'block' : 'hidden'} text-black">
+        <div className="mobile-nav ${isOpen ? '' : 'hidden'} text-black">
           {isOpen && (
             <ul className="menus" ref={sideRef}>
               {menuItemsData.map((menu, index) => {
