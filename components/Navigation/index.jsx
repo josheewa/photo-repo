@@ -65,12 +65,11 @@ const Navigation = () => {
   }, [])
 
   return (
-    <div className="nav-container">
+    <>
       {/* Main navbar for desktop */}
-      <div className="sticky top-0 z-10 h-20 w-full bg-gray-800">
+      <div className="nav-container sticky top-0 z-10 h-20 w-full bg-gray-900 shadow-lg">
         <div className="container mx-auto h-full px-4">
           <div className="flex h-full items-center justify-between">
-
             <Logo />
             <div className="nav item-container">
               <ul className="menus hidden gap-x-6 text-xl text-white md:flex">
@@ -81,9 +80,7 @@ const Navigation = () => {
             </div>
 
             {/* Placeholder for layout of navbar items, to be modified to potential contact dropdown*/}
-            <div className="hidden md:block">
-              {/* <Button /> */}
-            </div>
+            <div className="hidden md:block">{/* <Button /> */}</div>
 
             <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
               <svg
@@ -99,19 +96,19 @@ const Navigation = () => {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Sidebar/mobile navbar */}
-      <div className="mobile-nav ${isOpen ? 'block' : 'hidden'} text-black">
-        {isOpen && (
-          <ul className="menus" ref={sideRef}>
-            {menuItemsData.map((menu, index) => {
-              return <MobileMenuItems items={menu} key={index} />
-            })}
-          </ul>
-        )}
+        {/* Mobile navbar */}
+        <div className="mobile-nav ${isOpen ? 'block' : 'hidden'} text-black">
+          {isOpen && (
+            <ul className="menus" ref={sideRef}>
+              {menuItemsData.map((menu, index) => {
+                return <MobileMenuItems items={menu} key={index} />
+              })}
+            </ul>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
