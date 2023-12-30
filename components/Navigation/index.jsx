@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
+import Button from './Button'
 import MenuItems from './MenuItems'
 import MobileMenuItems from './MobileMenuItems'
 import { menuItemsData } from './menuItemsData'
@@ -56,7 +57,6 @@ const Navigation = () => {
     if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
       document.addEventListener('touchend', handleClick)
     }
-    // document.addEventListener('touchstart', handleClick)
 
     return () => {
       document.removeEventListener('mousedown', handleClick)
@@ -64,49 +64,27 @@ const Navigation = () => {
     }
   }, [])
 
-  // const calculateMenuPosition = () => {
-  //   if (buttonRef.current && sideRef.current) {
-  //     const buttonRect = buttonRef.current.getBoundingClientRect();
-  //     const windowHeight = window.innerHeight;
-  
-  //     const leftPosition = buttonRect.left + buttonRect.width;
-  //     const rightPosition = window.innerWidth - buttonRect.left;
-  //     const topPosition = buttonRect.top + window.scrollY; // Adjust for scroll position
-  
-  //     // Calculate the bottom position if needed
-  //     // const bottomPosition = windowHeight - buttonRect.bottom + window.scrollY;
-  
-  //     sideRef.current.style.left = `${leftPosition}px`;
-  //     sideRef.current.style.right = `${rightPosition}px`;
-  //     sideRef.current.style.top = `${topPosition}px`;
-  //     // sideRef.current.style.bottom = `${bottomPosition}px`; // Uncomment if using bottom
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   calculateMenuPosition()
-  //   window.addEventListener('resize', calculateMenuPosition)
-
-  //   return () => {
-  //     window.removeEventListener('resize', calculateMenuPosition)
-  //   }
-  // }, [])
-
   return (
     <div className="nav-container">
       {/* Main navbar for desktop */}
       <div className="sticky top-0 z-10 h-20 w-full bg-gray-800">
         <div className="container mx-auto h-full px-4">
           <div className="flex h-full items-center justify-between">
-            <Logo />
 
-            <ul className="nav menus hidden gap-x-6 text-xl text-white md:flex">
-              {menuItemsData.map((menu, index) => {
-                return <MenuItems items={menu} key={index} />
-              })}
-            </ul>
-            {/* Placeholder div for layout of navbar items, to be modified */}
-            <div></div>
+            <Logo />
+            <div className="nav item-container">
+              <ul className="menus hidden gap-x-6 text-xl text-white md:flex">
+                {menuItemsData.map((menu, index) => {
+                  return <MenuItems items={menu} key={index} />
+                })}
+              </ul>
+            </div>
+
+            {/* Placeholder for layout of navbar items, to be modified to potential contact dropdown*/}
+            <div className="hidden md:block">
+              {/* <Button /> */}
+            </div>
+
             <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
               <svg
                 width="40"

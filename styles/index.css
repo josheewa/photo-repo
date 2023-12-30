@@ -36,7 +36,7 @@
 @layer components {
   .nav-container {
     display: flex;
-    /* flex- */
+    justify-content: flex-start;
   }
 
   .nav .menu-items {
@@ -87,9 +87,8 @@
     list-style: none;
     background-color: #fff;
     border-radius: 0.5rem;
-    display: none;
     color: black;
-    transition: transform 0.3s ease;
+    display: none;
   }
 
   /* adds underlining animation for each dropdown menu item */

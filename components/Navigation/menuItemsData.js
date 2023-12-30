@@ -26,11 +26,11 @@ export const menuItemsData = [
       ],
     },
     {
-      title: 'About',
-      url: '/about',
+      title: 'Favorites',
+      url: '/favorites',
     },
     {
-      title: 'Contact',
-      url: '/contact',
+      title: 'Bio',
+      url: '/bio',
     },
   ];
