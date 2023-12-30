@@ -109,8 +109,7 @@
     }
 
     .mobile-nav .menus {
-      @apply list-none z-50 min-w-[12rem] bg-white rounded-lg;
-      box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08), 0 4px 6px -2px rgba(71, 63, 79, 0.16);
+      @apply list-none z-50 min-w-32 bg-white rounded-lg shadow-lg;
       padding: 0.5rem 0;
     }
 
@@ -130,7 +129,7 @@
 
     .mobile-nav .menu-items a:hover,
     .mobile-nav .menu-items button:hover {
-      @apply bg-gray-200;
+      @apply bg-gray-200 cursor-pointer;
     }
 
     .mobile-nav .arrow::after {
