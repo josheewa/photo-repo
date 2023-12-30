@@ -34,6 +34,10 @@
 }
 
 @layer components {
+  .nav-container {
+    display: flex;
+    /* flex- */
+  }
 
   .nav .menu-items {
     position: relative;
@@ -139,7 +143,11 @@
     }
 
     .mobile-nav {
+      position: absolute;
       display: block;
+      z-index: 9999;
+      right: 0;
+      top: 5rem;
     }
     .mobile-nav .mobile-nav__menu-button {
       color: inherit;
@@ -151,9 +159,6 @@
     }
     .mobile-nav .menus {
       list-style: none;
-      position: absolute;
-      top: 50px;
-      right: 20px;
       box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08), 0 4px 6px -2px rgba(71, 63, 79, 0.16);
       z-index: 9999;
       min-width: 12rem;
@@ -221,15 +226,5 @@
     .mobile-nav .dropdown.show {
       display: block;
     }
-  }
-
-  #error-page {
-    /* center content on the page */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 20px;
   }
 }
