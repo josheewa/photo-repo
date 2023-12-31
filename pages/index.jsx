@@ -7,7 +7,6 @@ import { useEffect, useRef } from 'react'
 import Modal from '../components/Modal'
 import cloudinary from '../utils/cloudinary'
 import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
-import { ImageProps } from '../utils/types'
 import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
 import Carousel from '../components/Carousel'
 

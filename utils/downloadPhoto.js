@@ -1,5 +1,5 @@
-function forceDownload(blobUrl: string, filename: string) {
-  let a: any = document.createElement('a')
+function forceDownload(blobUrl, filename) {
+  let a = document.createElement('a')
   a.download = filename
   a.href = blobUrl
   document.body.appendChild(a)
@@ -7,7 +7,7 @@ function forceDownload(blobUrl: string, filename: string) {
   a.remove()
 }
 
-export default function downloadPhoto(url: string, filename: string) {
+export default function downloadPhoto(url, filename) {
   if (!filename) filename = url.split('\\').pop().split('/').pop()
   fetch(url, {
     headers: new Headers({

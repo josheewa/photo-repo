@@ -13,7 +13,6 @@ import { useSwipeable } from "react-swipeable";
 import { variants } from "../utils/animationVariants";
 import downloadPhoto from "../utils/downloadPhoto";
 import { range } from "../utils/range";
-import { ImageProps, SharedModalProps } from "../utils/types";
 
 export default function SharedModal({
   index,

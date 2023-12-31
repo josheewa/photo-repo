@@ -5,7 +5,6 @@ import Carousel from "../../components/Carousel";
 import getResults from "../../utils/cachedImages";
 import cloudinary from "../../utils/cloudinary";
 import getBase64ImageUrl from "../../utils/generateBlurPlaceholder";
-import { ImageProps } from "../../utils/types";
 
 const Home = ({ currentPhoto }) => {
   const router = useRouter();
