@@ -33,15 +33,11 @@ const MenuItems = ({ items, depthLevel }) => {
 
   const closeDropdown = () => {
     dropdown && setDropdown(false)
+    console.log('close')
   }
 
   return (
-    <li
-      className="menu-items"
-      ref={ref}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={closeDropdown}>
+    <li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {items.url && items.submenu ? (
         <>
           <button
