@@ -10,7 +10,8 @@
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.16",
     "browserfs": "1.4.0",
-    "cloudinary": "1.41.1",
+    "child_process": "1.0.2",
+    "cloudinary": "^1.41.1",
     "eslint-config-next": "^13.0.1",
     "framer-motion": "^7.6.5",
     "fs": "0.0.2",
@@ -22,7 +23,8 @@
     "react-swipeable": "^7.0.1",
     "react-use-keypress": "^1.3.1",
     "sharp": "0.33.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "webpack": "5.89.0"
   },
   "devDependencies": {
     "@types/node": "18.11.9",

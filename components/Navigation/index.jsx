@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
-import Button from './Button'
 import MenuItems from './MenuItems'
 import MobileMenuItems from './MobileMenuItems'
 import { menuItemsData } from './menuItemsData'
 
 const Navigation = () => {
   // Toggle mobile menu
-  const [isOpen, setIsOpen] = useState(false)
+  const [mobileIsOpen, setMobileMenu] = useState(false)
   const sideRef = useRef(null)
-  const buttonRef = useRef(null)
+  const hamburgerRef = useRef(null)
 
   useEffect(() => {
     let isMouseDownHandled = false
@@ -23,19 +22,19 @@ const Navigation = () => {
 
       // Closes menu when clicking outside menu and button
       if (
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target) &&
         sideRef.current &&
         !sideRef.current.contains(event.target)
       ) {
         if (!isHandlingClick) {
-          setIsOpen(false)
+          setMobileMenu(false)
         }
       }
       // Toggles menu when menu is pressed
-      else if (buttonRef.current && buttonRef.current.contains(event.target)) {
+      else if (hamburgerRef.current && hamburgerRef.current.contains(event.target)) {
         if (!isHandlingClick) {
-          setIsOpen((prev) => !prev)
+          setMobileMenu((prev) => !prev)
           if (event.type === 'mousedown') {
             isMouseDownHandled = true
           }
@@ -60,20 +59,17 @@ const Navigation = () => {
     <>
       {/* Main navbar for desktop */}
       <div className="nav-container sticky top-0 z-10 h-20 w-full bg-gray-900 shadow-lg">
-        <div className="container mx-auto h-full px-4 flex items-center justify-between">
+        <div className="nav container mx-auto flex h-full items-center justify-between px-4">
           <Logo className="fixed left-0" />
-          <div className="nav item-container flex-grow">
-            <ul className="menus hidden gap-x-6 text-xl text-white md:flex items-center justify-center">
+          <div className="item-container flex-grow">
+            <ul className="menus hidden items-center justify-center gap-x-6 text-xl text-white md:flex">
               {menuItemsData.map((menu, index) => {
-                return <MenuItems items={menu} key={index} />;
+                return <MenuItems items={menu} key={index} />
               })}
             </ul>
           </div>
 
-          {/* Placeholder for layout of navbar items, to be modified to potential contact dropdown*/}
-          <div className="hidden md:block">{/* <Button /> */}</div>
-
-          <button type="button" className="inline-flex items-center md:hidden" ref={buttonRef}>
+          <button type="button" className="inline-flex items-center md:hidden" ref={hamburgerRef}>
             <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 18L20 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
               <path d="M4 12L20 12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
@@ -84,11 +80,11 @@ const Navigation = () => {
       </div>
 
       {/* Mobile navbar */}
-      <div className={`mobile-nav ${isOpen ? '' : 'hidden'} text-black`}>
-        {isOpen && (
+      <div className={`mobile-nav ${mobileIsOpen ? '' : 'hidden'} text-black`}>
+        {mobileIsOpen && (
           <ul className="menus" ref={sideRef}>
             {menuItemsData.map((menu, index) => {
-              return <MobileMenuItems items={menu} key={index} setIsOpen={setIsOpen}/>;
+              return <MobileMenuItems items={menu} key={index} setMobileMenu={setMobileMenu} />
             })}
           </ul>
         )}

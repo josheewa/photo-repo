@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Button from './Button'
 
 const Logo = () => {
   return (
@@ -9,7 +8,6 @@ const Logo = () => {
         <Image src="/logo.png" alt="Logo" width={35} height={35} className="relative px-2" />
         <h1 className="logo text-3xl font-bold text-white">PhotoRepo</h1>
       </Link>
-      <div>{/* <Button /> */}</div>
     </>
   )
 }

@@ -30,12 +30,7 @@ const MenuItems = ({ items, depthLevel }) => {
   const toggleDropdown = () => {
     setDropdown((prev) => !prev)
   }
-
-  const closeDropdown = () => {
-    dropdown && setDropdown(false)
-    console.log('close')
-  }
-
+  
   return (
     <li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {items.url && items.submenu ? (

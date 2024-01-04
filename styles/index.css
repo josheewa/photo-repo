@@ -44,7 +44,9 @@
     @apply text-left;
     padding: 0.7rem 1rem;
   }
-
+  .nav .menu-items button:hover {
+    cursor: pointer;
+  }
   /* adds underlining animation for navbar items */
   .nav .menu-items button::before {
     @apply content-[''] absolute w-full bottom-0 left-[50%] h-[2px] origin-bottom bg-white transition-transform duration-200 ease-linear;
@@ -71,7 +73,7 @@
     transform: translateX(-50%) scaleX(1);
   }
 
-  /* makes dropdown visible on click */
+  /* makes dropdown visible on hover */
   .nav .dropdown.show {
     @apply block;
   }
