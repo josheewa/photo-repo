@@ -10,12 +10,30 @@
 }
 
 @layer base {
+  html,
   body {
-    @apply text-white;
+    @apply m-0 min-h-screen text-white;
+  }
+
+  body {
+    @apply flex flex-grow flex-col;
   }
 
   h1 {
     @apply text-3xl;
+  }
+
+  footer {
+    @apply mt-auto h-auto bg-gray-900 p-3 text-center;
+  }
+
+  footer a {
+    @apply block text-xs text-gray-500;
+  }
+
+  input,
+  textarea {
+    @apply text-black;
   }
 }
 
@@ -25,8 +43,46 @@
   }
 }
 
+/* Email form styling */
 @layer components {
+  .email-container {
+    @apply w-full py-20;
+  }
 
+  .email-form {
+    @apply flex flex-col items-center;
+  }
+
+  .form-inputs {
+    @apply w-4/5 items-center;
+  }
+
+  .email-form span {
+    @apply mb-5;
+  }
+  .email-form label {
+    @apply text-left text-xl font-bold;
+  }
+
+  .email-form span {
+    @apply flex w-full flex-col justify-center;
+  }
+
+  .email-form button {
+    @apply w-20 rounded-md bg-purple-400 p-2;
+  }
+
+  .email-form input,
+  .email-form textarea {
+    @apply rounded-md p-2;
+  }
+
+  .email-form textarea {
+    @apply h-32;
+  }
+}
+/* Styling for navbar */
+@layer components {
   .nav-container {
     @apply flex justify-start;
   }
@@ -49,7 +105,7 @@
   }
   /* adds underlining animation for navbar items */
   .nav .menu-items button::before {
-    @apply content-[''] absolute w-full bottom-0 left-[50%] h-[2px] origin-bottom bg-white transition-transform duration-200 ease-linear;
+    @apply absolute bottom-0 left-[50%] h-[2px] w-full origin-bottom bg-white transition-transform duration-200 ease-linear content-[''];
     transform: translateX(-50%) scaleX(0);
   }
 
@@ -58,14 +114,14 @@
   }
 
   .nav .dropdown {
-    @apply absolute right-0 left-auto text-sm text-black z-50 min-w-40 list-none bg-white rounded-lg hidden;
+    @apply min-w-40 absolute right-0 left-auto z-50 hidden list-none rounded-lg bg-white text-sm text-black;
     box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08), 0 4px 6px -2px rgba(71, 63, 79, 0.16);
     padding: 0.5rem 0;
   }
 
   /* adds underlining animation for each dropdown menu item */
   .nav .dropdown > li::before {
-    @apply content-[''] absolute bottom-0 left-1/2 w-[90%] h-[2px] origin-bottom bg-black transition-transform duration-200 ease-linear;
+    @apply absolute bottom-0 left-1/2 h-[2px] w-[90%] origin-bottom bg-black transition-transform duration-200 ease-linear content-[''];
     transform: translateX(-50%) scaleX(0);
   }
 
@@ -103,15 +159,15 @@
     }
 
     .mobile-nav {
-      @apply absolute block z-50 right-0 top-20;
+      @apply absolute right-0 top-20 z-50 block;
     }
 
     .mobile-nav .mobile-nav__menu-button {
-      @apply text-inherit border-none bg-transparent cursor-pointer relative;
+      @apply relative cursor-pointer border-none bg-transparent text-inherit;
     }
 
     .mobile-nav .menus {
-      @apply list-none z-50 min-w-32 bg-white rounded-lg shadow-lg;
+      @apply min-w-32 z-50 list-none rounded-lg bg-white shadow-lg;
       padding: 0.5rem 0;
     }
 
@@ -120,7 +176,7 @@
     }
 
     .mobile-nav .menu-items button {
-      @apply flex items-center text-inherit border-none bg-transparent cursor-pointer w-full;
+      @apply flex w-full cursor-pointer items-center border-none bg-transparent text-inherit;
     }
 
     .mobile-nav .menu-items > a,
@@ -131,20 +187,20 @@
 
     .mobile-nav .menu-items a:hover,
     .mobile-nav .menu-items button:hover {
-      @apply bg-gray-200 cursor-pointer;
+      @apply cursor-pointer bg-gray-200;
     }
 
     .mobile-nav .arrow::after {
-      @apply content-[''] inline-block ml-5 border-solid border-t-[0.42em] border-t-black border-r-[0.32em] border-r-transparent border-l-[0.32em] border-l-transparent;
+      @apply ml-5 inline-block border-t-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-t-black border-r-transparent border-l-transparent content-[''];
       vertical-align: 0.09em;
     }
     .mobile-nav .arrow-close::after {
-      @apply content-[''] inline-block ml-5 border-solid border-b-[0.42em] border-b-black border-r-[0.32em] border-r-transparent border-l-[0.32em] border-l-transparent;
+      @apply ml-5 inline-block border-b-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-b-black border-r-transparent border-l-transparent content-[''];
       vertical-align: 0.09em;
     }
 
     .mobile-nav .dropdown {
-      @apply ml-5 text-[0.9rem] list-none hidden;
+      @apply ml-5 hidden list-none text-[0.9rem];
     }
 
     .mobile-nav .dropdown.show {
