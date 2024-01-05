@@ -9,19 +9,19 @@ export const menuItemsData = [
         },
         {
           title: 'Landscape',
-          url: 'landscape',
+          url: 'tags/landscape',
         },
         {
           title: 'City',
-          url: 'city',
+          url: 'tags/city',
         },
         {
           title: 'Flowers',
-          url: 'flowers',
+          url: 'tags/flowers',
         },
         {
           title: 'Astro',
-          url: 'astro',
+          url: 'tags/astro',
         },
       ],
     },

@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
-import Modal from "../components/Modal";
-import cloudinary from "../utils/cloudinary";
-import getBase64ImageUrl from "../utils/generateBlurPlaceholder";
+import Modal from "../../components/Modal";
+import cloudinary from "../../utils/cloudinary";
+import getBase64ImageUrl from "../../utils/generateBlurPlaceholder";
 
-import { useLastViewedPhoto } from "../utils/useLastViewedPhoto";
+import { useLastViewedPhoto } from "../../utils/useLastViewedPhoto";
 
 const Home = ({ images }) => {
   const router = useRouter();
@@ -77,7 +77,7 @@ export default Home;
 
 export async function getStaticProps() {
   const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/* AND resource_type:image AND tags=landscape`)
+    .expression(`folder:${process.env.CLOUDINARY_FOLDER}/* AND resource_type:image AND tags=astro`)
     .sort_by("public_id", "desc")
     .max_results(400)
     .execute();

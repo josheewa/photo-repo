@@ -17,6 +17,7 @@
     "fs": "0.0.2",
     "minimatch": "5.1.0",
     "next": "latest",
+    "nodemailer": "^6.9.8",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-hooks-global-state": "^2.1.0",
