@@ -44,43 +44,51 @@
 }
 
 /* Email form styling */
-@layer components {
-  .email-container {
-    @apply w-full py-20;
-  }
-
-  .email-form {
-    @apply flex flex-col items-center;
-  }
-
-  .form-inputs {
-    @apply w-4/5 items-center;
-  }
-
-  .email-form span {
-    @apply mb-5;
-  }
-  .email-form label {
-    @apply text-left text-xl font-bold;
-  }
-
-  .email-form span {
-    @apply flex w-full flex-col justify-center;
-  }
-
-  .email-form button {
-    @apply w-20 rounded-md bg-purple-400 p-2;
-  }
-
-  .email-form input,
-  .email-form textarea {
-    @apply rounded-md p-2;
-  }
-
-  .email-form textarea {
-    @apply h-32;
-  }
+.email-container {
+  @apply w-full py-20;
 }
+
+.email-form {
+  @apply flex flex-col items-center;
+}
+
+.form-inputs {
+  @apply w-4/5 items-center;
+}
+
+.email-form span {
+  @apply mb-5 flex w-full flex-col justify-center;
+}
+.email-form label {
+  @apply text-left text-xl font-bold;
+}
+
+.email-form button {
+  @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
+}
+.email-form .buttons {
+  @apply flex flex-row;
+}
+
+.clear-btn {
+  @apply flex flex-row items-center bg-red-600;
+}
+.clear-btn span {
+  @apply m-0;
+}
+.submit-btn {
+  @apply bg-purple-600;
+}
+
+.email-form input,
+.email-form textarea {
+  @apply rounded-md p-2;
+}
+
+.email-form textarea {
+  @apply h-32;
+}
+
 /* Styling for navbar */
 @layer components {
   .nav-container {
@@ -142,14 +150,11 @@
     @apply hidden;
   }
 
+  /* menu on mobile */
   @media screen and (max-width: 960px) {
     .nav {
       @apply hidden;
     }
-  }
-
-  /* menu on mobile */
-  @media screen and (max-width: 960px) {
     .nav-area {
       @apply justify-between;
     }
