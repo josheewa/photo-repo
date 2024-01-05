@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Modal from '../components/Modal'
-import cloudinary from '../utils/cloudinary'
+// import cloudinary from '../utils/cloudinary'
+import cloudinary from 'cloudinary'
 import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
 import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
 import Carousel from '../components/Carousel'
@@ -68,7 +69,6 @@ const Home = ({ images }) => {
           ))}
         </div>
       </main>
-      <footer className="p-6 text-center text-white/80 sm:p-12"></footer>
     </>
   )
 }
