@@ -84,7 +84,7 @@ const Navigation = () => {
         {mobileIsOpen && (
           <ul className="menus" ref={sideRef}>
             {menuItemsData.map((menu, index) => {
-              return <MobileMenuItems items={menu} key={index} setMobileMenu={setMobileMenu} />
+              return <MobileMenuItems items={menu} key={index} setIsOpen={setMobileMenu} />
             })}
           </ul>
         )}
