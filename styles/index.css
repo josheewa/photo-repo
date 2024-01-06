@@ -114,6 +114,10 @@
 .email-form textarea {
   @apply h-32;
 }
+.missing input,
+.missing textarea {
+  @apply border-2 border-red-600
+}
 
 /* Handles smaller screens not having enough room for name and email */
 @media screen and (max-width: 415px) {
