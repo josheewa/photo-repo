@@ -11,9 +11,12 @@ const Home = () => {
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
         <h1>About me</h1>
+        <div>
+
         <p>
-          hello world...
+          I'm an amateur photographer that enjoys capturing the beauty of the moment. As a new university student, taking pictures around campus is a favorite pastime. 
         </p>
+        </div>
       </main>
     </>
   )

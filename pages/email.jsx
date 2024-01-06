@@ -58,10 +58,11 @@ const EmailForm = () => {
         <title>Email Form</title>
         <meta property="og:title" content="Email Form" />
       </Head>
+      <h1 className='page-title'>Email form</h1>
       <div className="email-container">
         <form className="email-form" onSubmit={handleSubmit}>
           <div className="form-inputs">
-            <div className="flex w-full flex-row">
+            <div className="name-email flex w-full flex-row">
               <span className="mr-1">
                 <label>Name</label>
                 <input

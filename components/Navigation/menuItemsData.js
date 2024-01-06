@@ -29,10 +29,10 @@ export const menuItemsData = [
       title: 'Favorites',
       url: 'favorites',
     },
-    {
-      title: 'Bio',
-      url: 'bio',
-    },
+    // {
+    //   title: 'Bio',
+    //   url: 'bio',
+    // },
     {
       title: 'Contact',
       url: '',

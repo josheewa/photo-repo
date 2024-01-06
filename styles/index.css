@@ -19,8 +19,12 @@
     @apply flex flex-grow flex-col;
   }
 
+  main {
+    @apply m-2;
+  }
+
   h1 {
-    @apply text-3xl;
+    @apply m-3 text-center text-3xl;
   }
 
   footer {
@@ -41,11 +45,15 @@
   .logo {
     font-family: 'Oxygen', sans-serif;
   }
+
+  .page-title {
+    @apply font-bold text-gray-400
+  }
 }
 
 /* Email form styling */
 .email-container {
-  @apply w-full py-20;
+  @apply w-full py-4;
 }
 
 .email-form {
@@ -87,6 +95,25 @@
 
 .email-form textarea {
   @apply h-32;
+}
+
+/* Handles smaller screens not having enough room for name and email */
+@media screen and (max-width: 415px) {
+  .email-form label {
+    @apply text-sm;
+  }
+  .email-form .name-email {
+    @apply flex-col;
+  }
+
+  .email-form .form-inputs span {
+    @apply w-full;
+    margin: 0 0 1rem 0;
+  }
+
+  .email-form .form-inputs span label {
+    @apply mb-2;
+  }
 }
 
 /* Styling for navbar */
