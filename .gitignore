@@ -22,7 +22,6 @@ next-env.d.ts
 
 # Build artifacts
 next.config.js
-package-lock.json
 
 # Debug
 npm-debug.log*
