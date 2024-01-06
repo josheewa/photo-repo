@@ -199,7 +199,7 @@
     }
 
     .mobile-nav .menus {
-      @apply min-w-32 z-50 list-none rounded-lg bg-white shadow-lg;
+      @apply min-w-44 z-50 list-none rounded-lg bg-white shadow-lg;
       padding: 0.5rem 0;
     }
 

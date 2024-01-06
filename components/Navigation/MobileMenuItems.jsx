@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import Link from 'next/link'
 import MobileDropdown from './MobileDropdown'
 
@@ -57,7 +58,12 @@ const MobileMenuItems = ({ items, depthLevel, setIsOpen }) => {
         </>
       ) : (
         <Link href={items.url} onClick={closeMenu}>
-          {items.title}
+          <span className="flex flex-row items-center">
+            {items.icon && (
+              <Image src={items.icon} alt={items.title} height={20} width={20} className="mr-3" />
+            )}
+            <span>{items.title}</span>
+          </span>
         </Link>
       )}
     </li>
