@@ -110,7 +110,7 @@ const EmailForm = () => {
               />
             </span>
           </div>
-          <div className="buttons">
+          <div className="button-container">
             <button className="clear-btn" type="button" onClick={handleClear}>
               <span>
                 <VscClearAll />

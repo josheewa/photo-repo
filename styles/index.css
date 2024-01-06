@@ -73,8 +73,11 @@
 
 .email-form button {
   @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
+  transition: background-color 0.3s ease;
 }
-.email-form .buttons {
+
+
+.email-form .button-container {
   @apply flex flex-row;
 }
 
@@ -86,6 +89,21 @@
 }
 .submit-btn {
   @apply bg-purple-600;
+}
+
+.email-form .submit-btn:hover {
+  @apply bg-purple-500; 
+}
+
+.email-form .submit-btn:active {
+  @apply bg-purple-700; 
+}
+.email-form .clear-btn:hover {
+  @apply bg-red-500; 
+}
+
+.email-form .clear-btn:active {
+  @apply bg-red-700; 
 }
 
 .email-form input,
