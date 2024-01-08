@@ -1,4 +1,3 @@
-// import { NextPage } from "next";
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +5,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import Modal from '../components/Modal'
 import cloudinary from '../utils/cloudinary'
-// import cloudinary from 'cloudinary'
 import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
 import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
 import Carousel from '../components/Carousel'
@@ -41,7 +39,7 @@ const Home = ({ images }) => {
             }}
           />
         )}
-
+        <Carousel />
         <div className="img-container columns-2 gap-4 sm:columns-3 xl:columns-4 2xl:columns-5">
           {images.map(({ id, public_id, format, blurDataUrl }) => (
             <Link

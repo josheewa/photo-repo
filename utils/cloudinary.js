@@ -1,23 +1,57 @@
+// utils/cloudinary.js
+// import fetch from 'node-fetch';
+
 import cloudinary from 'cloudinary'
 
 cloudinary.v2.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+  api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
   secure: true,
 })
 
 export default cloudinary
 
-// utils/cloudinary.js
+// export async function fetchCloudinaryResources(tag) {
+//   try {
+//     const response = await fetch(
+//       `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`
+//     );
 
-// const cloudinary = require('cloudinary').v2
+//     if (response.ok) {
+//       const data = await response.json();
+//       return data;
+//     } else {
+//       throw new Error(`Failed to fetch resources: ${response.statusText}`);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching resources:', error.message);
+//     throw new Error('Internal Server Error');
+//   }
+// }
 
-// // Configure Cloudinary with your credentials
+
+
+// import cloudinary from 'cloudinary'
+
 // cloudinary.v2.config({
 //   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
+//   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+//   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
+//   secure: true,
+// })
+
+// export default cloudinary
+
+// utils/cloudinary.js
+
+// const cloudinary = require('cloudinary')
+
+// // Configure Cloudinary with your credentials
+// cloudinary.config({
+//   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+//   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 // })
 
 // // Function to fetch images based on tags
