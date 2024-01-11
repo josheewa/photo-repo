@@ -1,6 +1,7 @@
-
 import React from 'react'
-import Head from "next/head";
+import Head from 'next/head'
+
+import ProductGallery from '../components/ProductGallery'
 
 const Home = () => {
   return (
@@ -10,16 +11,12 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
-        <h1>About me</h1>
-        <div>
-
-        <p>
-          I'm an amateur photographer that enjoys capturing the beauty of the moment. As a new university student, taking pictures around campus is a favorite pastime. 
-        </p>
+        <div className="bg-black">
+          <ProductGallery startingImagePublicId="photo-repo/DSC_1406_malfbo" tag="city" />
         </div>
       </main>
     </>
   )
 }
 
-export default Home;
+export default Home

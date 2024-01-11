@@ -7,6 +7,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.14.0",
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.16",
     "browserfs": "1.4.0",

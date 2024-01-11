@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply flex flex-grow flex-col;
+    @apply flex flex-grow flex-col bg-black antialiased;
   }
 
   main {
@@ -27,6 +27,10 @@
     @apply m-3 text-center text-3xl;
   }
 
+  button:hover,
+  a:hover {
+    @apply cursor-pointer;
+  }
   footer {
     @apply mt-auto h-auto bg-gray-900 p-3 text-center;
   }
@@ -47,97 +51,129 @@
   }
 
   .page-title {
-    @apply font-bold text-gray-400
+    @apply font-bold text-gray-400;
   }
 }
 
+/* Popup modal styling */
+@layer components {
+  .blur {
+    @apply fixed top-0 left-0 z-10 h-full w-full;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+  }
+
+  .close-btn {
+    @apply absolute top-0 right-0 z-20 p-0  text-3xl text-gray-200;
+  }
+  .modal-container {
+    @apply fixed top-0 left-0 z-20 flex h-full w-full items-center justify-center;
+  }
+  .popup-image-container {
+    @apply relative;
+  }
+
+  .popup-image-container {
+    @apply w-1/2;
+  }
+  .popup-image-container.landscape {
+    @apply w-3/4;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .popup-image-container,
+    .popup-image-container.landscape {
+      @apply relative h-auto w-full;
+    }
+  }
+}
 /* Email form styling */
-.email-container {
-  @apply w-full py-4;
-}
+@layer components {
+  .email-container {
+    @apply w-full py-4;
+  }
 
-.email-form {
-  @apply flex flex-col items-center;
-}
+  .email-form {
+    @apply flex flex-col items-center;
+  }
 
-.form-inputs {
-  @apply w-4/5 items-center;
-}
+  .form-inputs {
+    @apply w-4/5 items-center;
+  }
 
-.email-form span {
-  @apply mb-5 flex w-full flex-col justify-center;
-}
-.email-form label {
-  @apply text-left text-xl font-bold;
-}
-
-.email-form button {
-  @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
-  transition: background-color 0.3s ease;
-}
-
-
-.email-form .button-container {
-  @apply flex flex-row;
-}
-
-.clear-btn {
-  @apply flex flex-row items-center bg-red-600;
-}
-.clear-btn span {
-  @apply m-0;
-}
-.submit-btn {
-  @apply bg-purple-600;
-}
-
-.email-form .submit-btn:hover {
-  @apply bg-purple-500; 
-}
-
-.email-form .submit-btn:active {
-  @apply bg-purple-700; 
-}
-.email-form .clear-btn:hover {
-  @apply bg-red-500; 
-}
-
-.email-form .clear-btn:active {
-  @apply bg-red-700; 
-}
-
-.email-form input,
-.email-form textarea {
-  @apply rounded-md p-2;
-}
-
-.email-form textarea {
-  @apply h-32;
-}
-.missing input,
-.missing textarea {
-  @apply border-2 border-red-600
-}
-
-/* Handles smaller screens not having enough room for name and email */
-@media screen and (max-width: 415px) {
+  .email-form span {
+    @apply mb-5 flex w-full flex-col justify-center;
+  }
   .email-form label {
-    @apply text-sm;
-  }
-  .email-form .name-email {
-    @apply flex-col;
+    @apply text-left text-xl font-bold;
   }
 
-  .email-form .form-inputs span {
-    @apply w-full;
-    margin: 0 0 1rem 0;
+  .email-form button {
+    @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
+    transition: background-color 0.3s ease;
   }
 
-  .email-form .form-inputs span label {
-    @apply mb-2;
+  .email-form .button-container {
+    @apply flex flex-row;
+  }
+
+  .clear-btn {
+    @apply flex flex-row items-center bg-red-600;
+  }
+  .clear-btn span {
+    @apply m-0;
+  }
+  .submit-btn {
+    @apply bg-purple-600;
+  }
+
+  .email-form .submit-btn:hover {
+    @apply bg-purple-500;
+  }
+
+  .email-form .submit-btn:active {
+    @apply bg-purple-700;
+  }
+  .email-form .clear-btn:hover {
+    @apply bg-red-500;
+  }
+
+  .email-form .clear-btn:active {
+    @apply bg-red-700;
+  }
+
+  .email-form input,
+  .email-form textarea {
+    @apply rounded-md p-2;
+  }
+
+  .email-form textarea {
+    @apply h-32;
+  }
+  .missing input,
+  .missing textarea {
+    @apply border-2 border-red-600;
+  }
+
+  /* Handles smaller screens not having enough room for name and email */
+  @media screen and (max-width: 415px) {
+    .email-form label {
+      @apply text-sm;
+    }
+    .email-form .name-email {
+      @apply flex-col;
+    }
+
+    .email-form .form-inputs span {
+      @apply w-full;
+      margin: 0 0 1rem 0;
+    }
+
+    .email-form .form-inputs span label {
+      @apply mb-2;
+    }
   }
 }
-
 /* Styling for navbar */
 @layer components {
   .nav-container {
@@ -221,7 +257,7 @@
     }
 
     .mobile-nav .menus {
-      @apply min-w-44 z-50 list-none rounded-lg bg-white shadow-lg;
+      @apply min-w-44 fixed right-0 z-50 list-none rounded-lg bg-white shadow-lg;
       padding: 0.5rem 0;
     }
 

@@ -11,9 +11,10 @@ class MyDocument extends Document {
           <meta property="og:description" content="" />
           <meta property="og:title" content="Photo Gallery" />
         </Head>
-        <body className="bg-black antialiased">
+        <body className="">
           <Main />
           <NextScript />
+          <script src="https://product-gallery.cloudinary.com/all.js" type="text/javascript"></script>
           <footer>
             <p>&copy; 2023-2024 Joshua Chen. All rights reserved.</p>
             <a href="https://www.flaticon.com/free-icons/picture" title="picture icons">

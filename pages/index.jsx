@@ -69,14 +69,13 @@ const Home = ({ images }) => {
           ))}
         </div>
       </main>
-      <footer className="p-6 text-center text-white/80 sm:p-12"></footer>
     </>
   )
 }
 
 export default Home
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const results = await cloudinary.v2.search
     .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/*`)
     .sort_by('public_id', 'desc')
