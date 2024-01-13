@@ -119,42 +119,51 @@ const Home = ({ images }) => {
 export default Home
 
 export async function getServerSideProps({ query }) {
-  console.log('Query Parameters:', query);
-  const { tag } = query
+  try {
+    console.log('Query Parameters:', query)
+    const { tag } = query
 
-  // Gets all images when "all" is specified
-  const tags = `${tag === 'all' ? '': ` AND tags=${tag}`}`
-  const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/*${tags}`)
-    .sort_by('public_id', 'desc')
-    .max_results(400)
-    .execute()
-  let reducedResults = []
+    // Gets all images when "all" is specified
+    const tags = `${tag === 'all' ? '' : ` AND tags=${tag}`}`
+    const results = await cloudinary.v2.search
+      .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/*${tags}`)
+      .sort_by('public_id', 'desc')
+      .max_results(400)
+      .execute()
+    let reducedResults = []
 
-  let i = 0
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
+    let i = 0
+    for (let result of results.resources) {
+      reducedResults.push({
+        id: i,
+        height: result.height,
+        width: result.width,
+        public_id: result.public_id,
+        format: result.format,
+      })
+      i++
+    }
+
+    const blurImagePromises = results.resources.map((image) => {
+      return getBase64ImageUrl(image)
     })
-    i++
-  }
+    const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
 
-  const blurImagePromises = results.resources.map((image) => {
-    return getBase64ImageUrl(image)
-  })
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
-
-  for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
-  }
-  console.log('Reduced Results:', reducedResults);
-  return {
-    props: {
-      images: reducedResults,
-    },
+    for (let i = 0; i < reducedResults.length; i++) {
+      reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
+    }
+    console.log('Reduced Results:', reducedResults)
+    return {
+      props: {
+        images: reducedResults,
+      },
+    }
+  } catch (error) {
+    console.error('Error in Cloudinary operations:', error)
+    return {
+      props: {
+        error: 'Failed to fetch images',
+      },
+    }
   }
 }
