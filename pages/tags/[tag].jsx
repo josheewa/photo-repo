@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import cloudinary from '../../utils/cloudinary'
-import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
+// import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
 import { IoMdClose } from 'react-icons/io'
 
 const Home = ({ images }) => {
@@ -97,8 +97,8 @@ const Home = ({ images }) => {
                   alt=""
                   className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                   style={{ transform: 'translate3d(0, 0, 0)' }}
-                  placeholder="blur"
-                  blurDataURL={blurDataUrl}
+                  // placeholder="blur"
+                  // blurDataURL={blurDataUrl}
                   src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
                   width={720}
                   height={480}
@@ -144,14 +144,14 @@ export async function getServerSideProps({ query }) {
       i++
     }
 
-    const blurImagePromises = results.resources.map((image) => {
-      return getBase64ImageUrl(image)
-    })
-    const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
+    // const blurImagePromises = results.resources.map((image) => {
+    //   return getBase64ImageUrl(image)
+    // })
+    // const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
 
-    for (let i = 0; i < reducedResults.length; i++) {
-      reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
-    }
+    // for (let i = 0; i < reducedResults.length; i++) {
+    //   reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
+    // }
     console.log('Reduced Results:', reducedResults)
     return {
       props: {
