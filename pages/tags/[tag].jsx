@@ -118,7 +118,7 @@ const Home = ({ images }) => {
 
 export default Home
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   try {
     console.log('Query Parameters:', query)
     const { tag } = query
