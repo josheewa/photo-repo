@@ -119,6 +119,7 @@ const Home = ({ images }) => {
 export default Home
 
 export async function getServerSideProps({ query }) {
+  console.log('Query Parameters:', query);
   const { tag } = query
 
   // Gets all images when "all" is specified
@@ -150,7 +151,7 @@ export async function getServerSideProps({ query }) {
   for (let i = 0; i < reducedResults.length; i++) {
     reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
   }
-
+  console.log('Reduced Results:', reducedResults);
   return {
     props: {
       images: reducedResults,
