@@ -58,7 +58,7 @@ const Navigation = () => {
   return (
     <>
       {/* Main navbar for desktop */}
-      <div className="nav-container sticky top-0 z-10 h-20 w-full bg-gray-900 shadow-lg">
+      <div className="nav-container ">
         <div className="nav container mx-auto flex h-full items-center justify-between px-4">
           <Logo className="fixed left-0" />
           <div className="item-container flex-grow">

@@ -32,7 +32,7 @@
     @apply cursor-pointer;
   }
   footer {
-    @apply mt-auto h-auto bg-gray-900 p-3 text-center;
+    @apply bg-gray-950 mt-auto h-auto p-3 text-center;
   }
 
   footer a {
@@ -174,10 +174,11 @@
     }
   }
 }
+
 /* Styling for navbar */
 @layer components {
   .nav-container {
-    @apply flex justify-start;
+    @apply sticky top-0 z-10 flex h-20 w-full justify-start shadow-lg backdrop-blur-xl;
   }
 
   .nav .menu-items {
@@ -207,14 +208,14 @@
   }
 
   .nav .dropdown {
-    @apply min-w-40 absolute right-0 left-auto z-50 hidden list-none rounded-lg bg-white text-sm text-black;
+    @apply min-w-40 absolute right-0 left-auto z-50 hidden list-none rounded-lg bg-black bg-opacity-75 backdrop-blur-xl text-sm text-white;
     box-shadow: 0 10px 15px -3px rgba(46, 41, 51, 0.08), 0 4px 6px -2px rgba(71, 63, 79, 0.16);
     padding: 0.5rem 0;
   }
 
   /* adds underlining animation for each dropdown menu item */
   .nav .dropdown > li::before {
-    @apply absolute bottom-0 left-1/2 h-[2px] w-[90%] origin-bottom bg-black transition-transform duration-200 ease-linear content-[''];
+    @apply absolute bottom-0 left-1/2 h-[2px] w-[90%] origin-bottom bg-white transition-transform duration-200 ease-linear content-[''];
     transform: translateX(-50%) scaleX(0);
   }
 
@@ -257,7 +258,7 @@
     }
 
     .mobile-nav .menus {
-      @apply min-w-44 fixed right-0 z-50 list-none rounded-lg bg-white shadow-lg;
+      @apply min-w-44 fixed right-0 z-50 list-none rounded-lg backdrop-blur-lg shadow-lg text-white;
       padding: 0.5rem 0;
     }
 
@@ -277,15 +278,15 @@
 
     .mobile-nav .menu-items a:hover,
     .mobile-nav .menu-items button:hover {
-      @apply cursor-pointer bg-gray-200;
+      @apply cursor-pointer bg-gray-800;
     }
 
     .mobile-nav .arrow::after {
-      @apply ml-5 inline-block border-t-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-t-black border-r-transparent border-l-transparent content-[''];
+      @apply ml-5 inline-block border-t-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-t-white border-r-transparent border-l-transparent content-[''];
       vertical-align: 0.09em;
     }
     .mobile-nav .arrow-close::after {
-      @apply ml-5 inline-block border-b-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-b-black border-r-transparent border-l-transparent content-[''];
+      @apply ml-5 inline-block border-b-[0.42em] border-r-[0.32em] border-l-[0.32em] border-solid border-b-white border-r-transparent border-l-transparent content-[''];
       vertical-align: 0.09em;
     }
 
