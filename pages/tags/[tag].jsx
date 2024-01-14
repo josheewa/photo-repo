@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import cloudinary from '../../utils/cloudinary'
-// import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
 import { IoMdClose } from 'react-icons/io'
 
 const Home = ({ images, tag }) => {
@@ -84,32 +83,39 @@ const Home = ({ images, tag }) => {
             </div>
           </>
         )}
-
+        {images.length === 0 && (
+            <>
+              <div className="no-images-msg">
+                <span>No images associated with tag: </span>
+                <span className='tag'>{`${tag}`}</span>
+              </div>
+            </>
+          )}
         <div className="img-container columns-2 gap-4 sm:columns-3 xl:columns-4 2xl:columns-5">
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <div
-              key={id}
-              onClick={() => handleImageClick(public_id, format)}
-              role="button"
-              tabIndex={0}>
-              <div className="after:content after:shadow-highlight group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg">
-                <Image
-                  alt=""
-                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                  style={{ transform: 'translate3d(0, 0, 0)' }}
-                  // placeholder="blur"
-                  // blurDataURL={blurDataUrl}
-                  src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                  width={720}
-                  height={480}
-                  sizes="(max-width: 640px) 100vw,
+          
+          {images.length > 0 &&
+            images.map(({ id, public_id, format }) => (
+              <div
+                key={id}
+                onClick={() => handleImageClick(public_id, format)}
+                role="button"
+                tabIndex={0}>
+                <div className="after:content after:shadow-highlight group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg">
+                  <Image
+                    alt=""
+                    className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                    style={{ transform: 'translate3d(0, 0, 0)' }}
+                    src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
                 (max-width: 1280px) 50vw,
                 (max-width: 1536px) 33vw,
                 25vw"
-                />
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </main>
     </>
@@ -120,7 +126,6 @@ export default Home
 
 export async function getServerSideProps({ query }) {
   try {
-    console.log('Query Parameters:', query)
     const { tag } = query
 
     // Gets all images when "all" is specified
@@ -144,15 +149,6 @@ export async function getServerSideProps({ query }) {
       i++
     }
 
-    // const blurImagePromises = results.resources.map((image) => {
-    //   return getBase64ImageUrl(image)
-    // })
-    // const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
-
-    // for (let i = 0; i < reducedResults.length; i++) {
-    //   reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
-    // }
-    console.log('Reduced Results:', reducedResults)
     return {
       props: {
         images: reducedResults,
