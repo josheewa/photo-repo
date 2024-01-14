@@ -5,7 +5,7 @@ import cloudinary from '../../utils/cloudinary'
 // import getBase64ImageUrl from '../../utils/generateBlurPlaceholder'
 import { IoMdClose } from 'react-icons/io'
 
-const Home = ({ images }) => {
+const Home = ({ images, tag }) => {
   const [openImage, setOpenImage] = useState(null)
   const [modalImageSource, setModalImageSource] = useState(null)
   const [isLandscape, setIsLandscape] = useState(false)
@@ -53,7 +53,7 @@ const Home = ({ images }) => {
   return (
     <>
       <Head>
-        <title>Photo Gallery</title>
+        <title>{`Photo Gallery - ${tag}`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
@@ -156,6 +156,7 @@ export async function getServerSideProps({ query }) {
     return {
       props: {
         images: reducedResults,
+        tag,
       },
     }
   } catch (error) {
