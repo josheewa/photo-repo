@@ -1,5 +1,7 @@
-import { AppProps } from 'next/app'
 import '../styles/index.css'
+import '../styles/home.css'
+import '../styles/email.css'
+
 import Navigation from '../components/Navigation'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

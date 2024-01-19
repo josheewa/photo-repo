@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap');
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
@@ -55,22 +57,14 @@
   }
 
   .no-images-msg {
-    @apply p-10 text-center w-full bg-red-600 h-full shadow-sm shadow-gray-600 text-xl
+    @apply h-full w-full bg-red-600 p-10 text-center text-xl shadow-sm shadow-gray-600;
   }
 
   .no-images-msg .tag {
-    @apply text-black font-bold
+    @apply font-bold text-black;
   }
 }
 
-@layer components {
-  .home-container {
-    @apply flex h-[1280px] flex-col text-black;
-  }
-  .home-container div {
-    @apply h-full w-full;
-  }
-}
 /* Popup modal styling */
 @layer components {
   .blur {
@@ -83,111 +77,11 @@
   .modal-container {
     @apply fixed top-0 left-0 z-20 flex h-full w-full items-center justify-center;
   }
-  .popup-image-container {
-    @apply relative;
-  }
-
-  .popup-image-container {
-    @apply w-1/3;
-  }
-  .popup-image-container.landscape {
-    @apply w-3/4;
-  }
-
-  @media only screen and (max-width: 767px) {
-    .popup-image-container,
-    .popup-image-container.landscape {
-      @apply relative h-auto w-full;
-    }
+  .popup-carousel-container {
+    @apply relative w-full
   }
 }
-/* Email form styling */
-@layer components {
-  .email-container {
-    @apply w-full py-4;
-  }
 
-  .email-form {
-    @apply flex flex-col items-center;
-  }
-
-  .form-inputs {
-    @apply w-4/5 items-center;
-  }
-
-  .email-form span {
-    @apply mb-5 flex w-full flex-col justify-center;
-  }
-  .email-form label {
-    @apply text-left text-xl font-bold;
-  }
-
-  .email-form button {
-    @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
-    transition: background-color 0.3s ease;
-  }
-
-  .email-form .button-container {
-    @apply flex flex-row;
-  }
-
-  .clear-btn {
-    @apply flex flex-row items-center bg-red-600;
-  }
-  .clear-btn span {
-    @apply m-0;
-  }
-  .submit-btn {
-    @apply bg-purple-600;
-  }
-
-  .email-form .submit-btn:hover {
-    @apply bg-purple-500;
-  }
-
-  .email-form .submit-btn:active {
-    @apply bg-purple-700;
-  }
-  .email-form .clear-btn:hover {
-    @apply bg-red-500;
-  }
-
-  .email-form .clear-btn:active {
-    @apply bg-red-700;
-  }
-
-  .email-form input,
-  .email-form textarea {
-    @apply rounded-md p-2;
-  }
-
-  .email-form textarea {
-    @apply h-32;
-  }
-  .missing input,
-  .missing textarea {
-    @apply border-2 border-red-600;
-  }
-
-  /* Handles smaller screens not having enough room for name and email */
-  @media screen and (max-width: 415px) {
-    .email-form label {
-      @apply text-sm;
-    }
-    .email-form .name-email {
-      @apply flex-col;
-    }
-
-    .email-form .form-inputs span {
-      @apply w-full;
-      margin: 0 0 1rem 0;
-    }
-
-    .email-form .form-inputs span label {
-      @apply mb-2;
-    }
-  }
-}
 
 /* Styling for navbar */
 @layer components {

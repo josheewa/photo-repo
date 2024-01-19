@@ -1,7 +1,7 @@
 export const menuItemsData = [
   {
     title: 'Home',
-    url: '/',
+    url: '/home',
   },
   {
     title: 'Gallery', //▲ ▼

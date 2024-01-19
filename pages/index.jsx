@@ -1,112 +1,92 @@
-// import { NextPage } from "next";
 import Head from 'next/head'
+import React from 'react'
+import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react'
-import Modal from '../components/Modal'
-import cloudinary from '../utils/cloudinary'
-// import cloudinary from 'cloudinary'
-import getBase64ImageUrl from '../utils/generateBlurPlaceholder'
-import { useLastViewedPhoto } from '../utils/useLastViewedPhoto'
-import Carousel from '../components/Carousel'
+import { allTags } from './data/allTags.js'
+import Link from 'next/link.js'
+import HomeCarousel from '../components/HomeCarousel.jsx'
 
-const Home = ({ images }) => {
-  const router = useRouter()
-  const { photoId } = router.query
-  const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto()
+const Home = () => {
+  const longwoodImage =
+    'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705612684/photo-repo/DSC_0152_zyedw1.jpg'
+  const springlakeImage =
+    'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705613237/photo-repo/DSC_1175_cofogc.jpg'
 
-  const lastViewedPhotoRef = useRef(null)
+  const [images, setImages] = useState([])
 
   useEffect(() => {
-    // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    if (lastViewedPhoto && !photoId) {
-      lastViewedPhotoRef.current.scrollIntoView({ block: 'center' })
-      setLastViewedPhoto(null)
-    }
-  }, [photoId, lastViewedPhoto, setLastViewedPhoto])
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://res.cloudinary.com/ddaymbzcc/image/list/favorites.json'
+        )
 
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+
+        const result = await response.json()
+        const { resources } = result
+        console.log(resources)
+        setImages(resources)
+      } catch (err) {
+        console.error('Failed to fetch images')
+      }
+    }
+
+    fetchData()
+  }, [])
   return (
     <>
       <Head>
-        <title>Photo Gallery</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PhotoRepo - Home</title>
       </Head>
-      <main className="mx-auto max-w-[1960px] p-4">
-        {photoId && (
-          <Modal
-            images={images}
-            onClose={() => {
-              setLastViewedPhoto(photoId)
-            }}
-          />
-        )}
-
-        <div className="img-container columns-2 gap-4 sm:columns-3 xl:columns-4 2xl:columns-5">
-          {images.map(({ id, public_id, format, blurDataUrl }) => (
-            <Link
-              key={id}
-              href={`/?photoId=${id}`}
-              as={`/p/${id}`}
-              ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
-              shallow
-              className="after:content after:shadow-highlight group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg">
-              <Image
-                alt=""
-                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                style={{ transform: 'translate3d(0, 0, 0)' }}
-                placeholder="blur"
-                blurDataURL={blurDataUrl}
-                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${public_id}.${format}`}
-                width={720}
-                height={480}
-                sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
-              />
-            </Link>
-          ))}
+      <main>
+        <div className="relative justify-center">
+          <HomeCarousel className="w-1/2 p-2" images={images} />
         </div>
+        <div className="tag-banner">
+          <div className="banner-full">
+            <h2 className="banner-title text-blue-200">Tags</h2>
+            <div className="tag-list">
+              {allTags.map(({ tag, name }) => (
+                <Link className="tag-links" href={`/tags/${tag}`}>
+                  {name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Link id="longwood-banner" className="banner bg-green-200" href="/tags/longwood">
+          <div className="banner-half">
+            <Image src={longwoodImage} width={1500} height={1000} className="banner-image" />
+          </div>
+          <div className="banner-half">
+            <div className="banner-text text-black">
+              <h2 className="banner-title">Longwood Gardens</h2>
+              <p className="banner-info">
+                Stunning botanical gardens with a multitude of flowers and captivating night
+                illuminated fountain shows
+              </p>
+            </div>
+          </div>
+        </Link>
+        <Link id="springlake-banner" className="banner bg-blue-300" href="/tags/spring-lake">
+          <div className="banner-half">
+            <div className="banner-text text-black">
+              <h2 className="banner-title">Spring Lake Beach</h2>
+              <p className="banner-info">
+                Beautiful beach town with wonderful coastal views and mesmerizing sunrises and
+                sunsets
+              </p>
+            </div>
+          </div>
+          <div className="banner-half">
+            <Image src={springlakeImage} width={1500} height={1000} className="banner-image" />
+          </div>
+        </Link>
       </main>
     </>
   )
 }
-
 export default Home
-
-export async function getStaticProps() {
-  const results = await cloudinary.v2.search
-    .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/*`)
-    .sort_by('public_id', 'desc')
-    .max_results(400)
-    .execute()
-  let reducedResults = []
-
-  let i = 0
-  for (let result of results.resources) {
-    reducedResults.push({
-      id: i,
-      height: result.height,
-      width: result.width,
-      public_id: result.public_id,
-      format: result.format,
-    })
-    i++
-  }
-
-  const blurImagePromises = results.resources.map((image) => {
-    return getBase64ImageUrl(image)
-  })
-  const imagesWithBlurDataUrls = await Promise.all(blurImagePromises)
-
-  for (let i = 0; i < reducedResults.length; i++) {
-    reducedResults[i].blurDataUrl = imagesWithBlurDataUrls[i]
-  }
-
-  return {
-    props: {
-      images: reducedResults,
-    },
-  }
-}
