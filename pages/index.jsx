@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { allTags } from './data/allTags.js'
+import { allTags } from '../data/allTags.js'
 import Link from 'next/link.js'
 import HomeCarousel from '../components/HomeCarousel.jsx'
 
