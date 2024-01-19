@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
 import ImageGallery from 'react-image-gallery'
 
 const TagCarousel = ({ startingImagePublicId, tag, format }) => {
@@ -51,20 +50,6 @@ const getAssets = async (startingImagePublicId, tag, format) => {
       thumbnail: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_150,h_100,b_auto/${asset.public_id}.${asset.format}`,
     }))
     return rotatedMediaAssets
-    // // Exclude the starting image
-    // const otherMediaAssets = data.resources
-    //   .filter((asset) => asset.public_id !== startingImagePublicId)
-    //   .map((asset) => ({
-    //     original: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_1500,h_1000,b_black/${asset.public_id}.${asset.format}`,
-    //     thumbnail: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_150,h_100,b_black/${asset.public_id}.${asset.format}`,
-    //   }))
-    // const startingImage = {
-    //   original: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_1500,h_1000,b_black/${startingImagePublicId}.${format}`,
-    //   thumbnail: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_150,h_100,b_black/${startingImagePublicId}.${format}`,
-    //   publicId: startingImagePublicId,
-    // }
-    // const mediaAssets = [startingImage, ...otherMediaAssets]
-    // return mediaAssets
   } catch (error) {
     console.error('Error fetching media assets:', error)
     return []

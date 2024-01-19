@@ -14,13 +14,9 @@ const Home = ({ images, tag }) => {
   const handleImageClick = (public_id, format) => {
     setOpenImage(public_id)
     setOpenImageFormat(format)
-    setModalImageSource(
-      `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`
-    )
   }
   const closeModal = () => {
     setOpenImage(null)
-    setIsLandscape(false)
   }
 
   const handleOutsideClick = (e) => {
