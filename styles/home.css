@@ -2,12 +2,14 @@
 
 @layer components {
   .banner {
-    @apply flex h-[50vw]  w-full flex-row p-3;
+    @apply flex h-fit w-full flex-row p-3;
   }
   .banner-half {
     @apply flex w-1/2 flex-col justify-center;
   }
-
+  .banner-image {
+    @apply border-2 border-black 
+  }
   .banner-text {
     @apply p-3;
   }
