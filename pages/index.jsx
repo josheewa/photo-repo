@@ -27,7 +27,6 @@ const Home = () => {
 
         const result = await response.json()
         const { resources } = result
-        console.log(resources)
         setImages(resources)
       } catch (err) {
         console.error('Failed to fetch images')
@@ -42,49 +41,54 @@ const Home = () => {
         <title>PhotoRepo - Home</title>
       </Head>
       <main>
-        <div className="relative justify-center">
-          <HomeCarousel className="w-1/2 p-2" images={images} />
+
+        <div className="home-container">
+          <div className="flex h-fit justify-center">
+            <div className="carousel-container">
+              <HomeCarousel className="p-2" images={images} />
+            </div>
+          </div>
+          <div className="tag-banner">
+            <div className="banner-full">
+              <h2 className="banner-title text-blue-200">Tags</h2>
+              <div className="tag-list">
+                {allTags.map(({ tag, name }) => (
+                  <Link className="tag-links" href={`/tags/${tag}`}>
+                    {name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          <Link id="longwood-banner" className="banner bg-green-200" href="/tags/longwood">
+            <div className="banner-half">
+              <Image src={longwoodImage} width={1500} height={1000} className="banner-image" />
+            </div>
+            <div className="banner-half">
+              <div className="banner-text text-black">
+                <h2 className="banner-title">Longwood Gardens</h2>
+                <p className="banner-info">
+                  Stunning botanical gardens with a multitude of flowers and captivating night
+                  illuminated fountain shows
+                </p>
+              </div>
+            </div>
+          </Link>
+          <Link id="springlake-banner" className="banner bg-blue-300" href="/tags/spring-lake">
+            <div className="banner-half">
+              <div className="banner-text text-black">
+                <h2 className="banner-title">Spring Lake Beach</h2>
+                <p className="banner-info">
+                  Beautiful beach town with wonderful coastal views and mesmerizing sunrises and
+                  sunsets
+                </p>
+              </div>
+            </div>
+            <div className="banner-half">
+              <Image src={springlakeImage} width={1500} height={1000} className="banner-image" />
+            </div>
+          </Link>
         </div>
-        <div className="tag-banner">
-          <div className="banner-full">
-            <h2 className="banner-title text-blue-200">Tags</h2>
-            <div className="tag-list">
-              {allTags.map(({ tag, name }) => (
-                <Link className="tag-links" href={`/tags/${tag}`}>
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-        <Link id="longwood-banner" className="banner bg-green-200" href="/tags/longwood">
-          <div className="banner-half">
-            <Image src={longwoodImage} width={1500} height={1000} className="banner-image" />
-          </div>
-          <div className="banner-half">
-            <div className="banner-text text-black">
-              <h2 className="banner-title">Longwood Gardens</h2>
-              <p className="banner-info">
-                Stunning botanical gardens with a multitude of flowers and captivating night
-                illuminated fountain shows
-              </p>
-            </div>
-          </div>
-        </Link>
-        <Link id="springlake-banner" className="banner bg-blue-300" href="/tags/spring-lake">
-          <div className="banner-half">
-            <div className="banner-text text-black">
-              <h2 className="banner-title">Spring Lake Beach</h2>
-              <p className="banner-info">
-                Beautiful beach town with wonderful coastal views and mesmerizing sunrises and
-                sunsets
-              </p>
-            </div>
-          </div>
-          <div className="banner-half">
-            <Image src={springlakeImage} width={1500} height={1000} className="banner-image" />
-          </div>
-        </Link>
       </main>
     </>
   )
