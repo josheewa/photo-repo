@@ -1,0 +1,89 @@
+@tailwind components;
+
+/* Email form styling */
+@layer components {
+  .email-container {
+    @apply w-full py-4 bg-gray-900 rounded-lg;
+  }
+
+  .email-form {
+    @apply flex flex-col items-center;
+  }
+
+  .form-inputs {
+    @apply w-4/5 items-center;
+  }
+
+  .email-form span {
+    @apply mb-5 flex w-full flex-col justify-center;
+  }
+  .email-form label {
+    @apply text-left text-xl font-bold;
+  }
+
+  .email-form button {
+    @apply m-3 flex w-20 items-center justify-center rounded-md p-2;
+    transition: background-color 0.3s ease;
+  }
+
+  .email-form .button-container {
+    @apply flex flex-row;
+  }
+
+  .clear-btn {
+    @apply flex flex-row items-center bg-red-600;
+  }
+  .clear-btn span {
+    @apply m-0;
+  }
+  .submit-btn {
+    @apply bg-purple-600;
+  }
+
+  .email-form .submit-btn:hover {
+    @apply bg-purple-500;
+  }
+
+  .email-form .submit-btn:active {
+    @apply bg-purple-700;
+  }
+  .email-form .clear-btn:hover {
+    @apply bg-red-500;
+  }
+
+  .email-form .clear-btn:active {
+    @apply bg-red-700;
+  }
+
+  .email-form input,
+  .email-form textarea {
+    @apply rounded-md p-2;
+  }
+
+  .email-form textarea {
+    @apply h-32;
+  }
+  .missing input,
+  .missing textarea {
+    @apply border-2 border-red-600;
+  }
+
+  /* Handles smaller screens not having enough room for name and email */
+  @media screen and (max-width: 415px) {
+    .email-form label {
+      @apply text-sm;
+    }
+    .email-form .name-email {
+      @apply flex-col;
+    }
+
+    .email-form .form-inputs span {
+      @apply w-full;
+      margin: 0 0 1rem 0;
+    }
+
+    .email-form .form-inputs span label {
+      @apply mb-2;
+    }
+  }
+}

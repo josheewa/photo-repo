@@ -1,0 +1,35 @@
+@tailwind components;
+
+@layer components {
+  .banner {
+    @apply flex h-[50vw]  w-full flex-row p-3;
+  }
+  .banner-half {
+    @apply flex w-1/2 flex-col justify-center;
+  }
+
+  .banner-text {
+    @apply p-3;
+  }
+  .banner-title {
+    @apply text-center text-3xl font-bold;
+  }
+  .banner-info {
+    @apply p-3;
+  }
+
+  .tag-banner {
+    @apply flex p-3;
+  }
+
+  .tag-list {
+    @apply flex list-none columns-3 flex-wrap justify-center gap-3 py-3;
+  }
+
+  .tag-links {
+    @apply relative rounded-md bg-gray-800 p-2;
+  }
+  .tag-links:hover {
+    @apply bg-gray-600;
+  }
+}
