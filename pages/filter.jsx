@@ -10,7 +10,7 @@ const Filter = () => {
   // Fetch images based on checked tags
   const fetchImages = async () => {
     try {
-      const imageArray = []
+      const imageSet = new Set() // Use a Set to store unique images
       for (const tag of checkedTags) {
         const response = await fetch(`https://res.cloudinary.com/ddaymbzcc/image/list/${tag}.json`)
 
@@ -26,9 +26,20 @@ const Filter = () => {
           format: resource.format,
         }))
 
-        imageArray.push(...imagesInfo)
+        // Check for duplicates before adding to the Set
+        imagesInfo.forEach((image) => {
+          const isDuplicate = Array.from(imageSet).some(
+            (existingImage) => existingImage.public_id === image.public_id
+          )
+          if (!isDuplicate) {
+            imageSet.add(image)
+          }
+        })
       }
-      setImages(imageArray)
+
+      // Convert Set back to an array
+      const uniqueImages = Array.from(imageSet)
+      setImages(uniqueImages)
     } catch (error) {
       console.error('Error fetching images:', error)
     }
