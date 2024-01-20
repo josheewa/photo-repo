@@ -117,15 +117,13 @@ const Home = () => {
             </div>
           </Link>
           <div className="tag-banner bg-gray-900">
-            <div className="banner-full">
-              <h2 className="banner-title text-white">Explore Tags</h2>
-              <div className="tag-list">
-                {allTags.map(({ tag, name }) => (
-                  <Link className="tag-links" href={`/tags/${tag}`}>
-                    {name}
-                  </Link>
-                ))}
-              </div>
+            <h2 className="banner-title text-white">Explore Tags</h2>
+            <div className="tag-list">
+              {allTags.map(({ tag, name }) => (
+                <Link className="tag-links" href={`/tags/${tag}`}>
+                  {name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
