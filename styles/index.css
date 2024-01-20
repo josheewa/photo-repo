@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "~react-image-gallery/styles/css/image-gallery.css";
+@import '~react-image-gallery/styles/css/image-gallery.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap');
 
@@ -63,6 +63,14 @@
   .no-images-msg .tag {
     @apply font-bold text-black;
   }
+
+  .img-container {
+    @apply my-2;
+  }
+
+  .tag-banner {
+    @apply flex flex-col bg-gray-900 p-3 text-center;
+  }
 }
 
 /* Popup modal styling */
@@ -78,10 +86,9 @@
     @apply fixed top-0 left-0 z-20 flex h-full w-full items-center justify-center;
   }
   .popup-carousel-container {
-    @apply relative w-full
+    @apply relative w-full;
   }
 }
-
 
 /* Styling for navbar */
 @layer components {

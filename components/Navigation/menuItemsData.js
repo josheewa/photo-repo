@@ -4,6 +4,10 @@ export const menuItemsData = [
     url: '/',
   },
   {
+    title: 'Filter',
+    url: '/filter',
+  },
+  {
     title: 'Gallery',
     url: '',
     submenu: [
