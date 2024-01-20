@@ -21,6 +21,8 @@ const Filter = () => {
         }
 
         const data = await response.json()
+
+        // Extracts data from resources to display images and populate gallery
         const imagesInfo = data.resources.map((resource) => ({
           source: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${resource.public_id}.${resource.format}`,
           original: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_1500,h_1000,b_auto/${resource.public_id}.${resource.format}`,
@@ -66,8 +68,10 @@ const Filter = () => {
     fetchImages()
   }, [checkedTags])
 
+  // Sorts images by public_id so images aren't too grouped
   const sortedImages = images.slice().sort((a, b) => a.public_id.localeCompare(b.public_id))
 
+  // Opens carousel modal
   const handleImageClick = (public_id) => {
     setOpenImage(public_id)
     const startingImageIndex = sortedImages.findIndex((asset) => asset.public_id === public_id)
@@ -76,6 +80,7 @@ const Filter = () => {
       ...sortedImages.slice(0, startingImageIndex),
     ])
   }
+
   const closeModal = () => {
     setOpenImage(null)
   }
