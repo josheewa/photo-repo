@@ -16,12 +16,12 @@ export const menuItemsData = [
         url: '/tags/all',
       },
       {
-        title: 'Sunset',
-        url: '/tags/sunset',
-      },
-      {
         title: 'Flowers',
         url: '/tags/flowers',
+      },
+      {
+        title: 'Sunset',
+        url: '/tags/sunset',
       },
       {
         title: 'City',
@@ -31,11 +31,11 @@ export const menuItemsData = [
         title: 'Astro',
         url: '/tags/astro',
       },
+      {
+        title: 'Favorites',
+        url: '/tags/favorites',
+      },
     ],
-  },
-  {
-    title: 'Favorites',
-    url: '/tags/favorites',
   },
   {
     title: 'Contact',
