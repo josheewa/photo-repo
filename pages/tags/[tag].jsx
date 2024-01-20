@@ -43,11 +43,6 @@ const Home = ({ images, tag }) => {
     }
   }, [])
 
-  // Checks if loaded image is landscape
-  const handleImageLoad = (e) => {
-    setIsLandscape(e.target.naturalWidth > e.target.naturalHeight)
-  }
-
   return (
     <>
       <Head>
