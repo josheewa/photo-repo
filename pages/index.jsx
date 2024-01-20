@@ -12,7 +12,7 @@ const Home = () => {
   const nemoursImage =
     'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705612811/photo-repo/DSC_0851_xzbodl.jpg'
   const springlakeImage =
-    'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705613237/photo-repo/DSC_1175_cofogc.jpg'
+    'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705613275/photo-repo/DSC_1238_xfnhei.jpg'
   const brooklynImage =
     'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705611897/photo-repo/xsqfihksb9qpgr740f9s.jpg'
   const [images, setImages] = useState([])
@@ -60,7 +60,7 @@ const Home = () => {
               </div>
             </div>
           </Link>
-          <Link id="longwood-banner" className="banner bg-green-300" href="/tags/longwood">
+          <Link id="longwood-banner" className="banner bg-green-200" href="/tags/longwood">
             <div className="banner-half">
               <Image src={longwoodImage} width={1500} height={1000} className="banner-image" />
             </div>
@@ -88,7 +88,7 @@ const Home = () => {
               <Image src={nemoursImage} width={1500} height={1000} className="banner-image" />
             </div>
           </Link>
-          <Link id="brooklyn-banner" className="banner bg-purple-300" href="/tags/brooklyn-botanic">
+          <Link id="brooklyn-banner" className="banner bg-purple-200" href="/tags/brooklyn-botanic">
             <div className="banner-half">
               <Image src={brooklynImage} width={1500} height={1000} className="banner-image" />
             </div>
@@ -102,7 +102,7 @@ const Home = () => {
               </div>
             </div>
           </Link>
-          <Link id="springlake-banner" className="banner bg-yellow-100" href="/tags/spring-lake">
+          <Link id="springlake-banner" className="banner bg-orange-200" href="/tags/spring-lake">
             <div className="banner-half">
               <div className="banner-text text-black">
                 <h2 className="banner-title">Spring Lake Beach</h2>
