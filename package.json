@@ -11,6 +11,7 @@
     "@cloudinary/url-gen": "^1.14.0",
     "@headlessui/react": "1.7.17",
     "@heroicons/react": "2.0.16",
+    "@vercel/analytics": "^1.1.2",
     "browserfs": "1.4.0",
     "child_process": "1.0.2",
     "cloudinary": "^1.41.1",
