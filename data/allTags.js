@@ -13,7 +13,7 @@ export const allTags = [
   { tag: 'new-jersey', name: 'New Jersey' },
   { tag: 'night', name: 'Night' },
   { tag: 'nyc', name: 'NYC' },
-  { tag: 'portraits', name: 'Portraits' },
+  // { tag: 'portraits', name: 'Portraits' },
   { tag: 'spring-lake', name: 'Spring Lake' },
   { tag: 'sunset', name: 'Sunset' },
   { tag: 'sunrise', name: 'Sunrise' },

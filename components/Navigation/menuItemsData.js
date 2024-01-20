@@ -4,25 +4,24 @@ export const menuItemsData = [
     url: '/',
   },
   {
-    title: 'Gallery', //▲ ▼
+    title: 'Gallery',
     url: '',
     submenu: [
       {
-        title: 'All',
+        title: 'Browse All',
         url: '/tags/all',
       },
       {
-        title: 'Landscape',
-        url: 'city',
-        url: '/tags/landscape',
-      },
-      {
-        title: 'City',
-        url: '/tags/city',
+        title: 'Sunset',
+        url: '/tags/sunset',
       },
       {
         title: 'Flowers',
         url: '/tags/flowers',
+      },
+      {
+        title: 'City',
+        url: '/tags/city',
       },
       {
         title: 'Astro',
@@ -32,7 +31,7 @@ export const menuItemsData = [
   },
   {
     title: 'Favorites',
-    url: 'favorites',
+    url: '/tags/favorites',
   },
   {
     title: 'Contact',
@@ -46,9 +45,7 @@ export const menuItemsData = [
       },
       {
         title: 'E-mail',
-        // url: 'mailto:jooshtography@gmail.com',
         url: '/email',
-        // target: '_blank',
         icon: '/gmail.png',
       },
       {

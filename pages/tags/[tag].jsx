@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import cloudinary from '../../utils/cloudinary'
 import { IoMdClose } from 'react-icons/io'
 import TagCarousel from '../../components/TagCarousel'
+import { allTags } from '../../data/allTags'
+import Link from 'next/link'
 
 const Home = ({ images, tag }) => {
   const [openImage, setOpenImage] = useState(null)
@@ -99,6 +101,18 @@ const Home = ({ images, tag }) => {
                 </div>
               </div>
             ))}
+        </div>
+        <div className="tag-banner">
+          <div className="banner-full">
+            <h2 className="banner-title text-blue-200">Tags</h2>
+            <div className="tag-list">
+              {allTags.map(({ tag, name }) => (
+                <Link className="tag-links" href={`/tags/${tag}`}>
+                  {name}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </>
