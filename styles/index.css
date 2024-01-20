@@ -29,6 +29,13 @@
     @apply m-3 text-center text-3xl;
   }
 
+  h2 {
+    @apply text-3xl;
+  }
+
+  p {
+    @apply text-sm;
+  }
   button:hover,
   a:hover {
     @apply cursor-pointer;
@@ -44,6 +51,16 @@
   input,
   textarea {
     @apply text-black;
+  }
+
+  @media screen and (max-width: 767px) {
+    h2 {
+      @apply text-sm;
+    }
+
+    p {
+      @apply text-xs;
+    }
   }
 }
 

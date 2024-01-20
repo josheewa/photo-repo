@@ -121,7 +121,7 @@ const Home = () => {
             <div className="tag-list">
               {allTags.map(({ tag, name }) => (
                 <Link className="tag-links" href={`/tags/${tag}`}>
-                  {name}
+                  <p>{name}</p>
                 </Link>
               ))}
             </div>
