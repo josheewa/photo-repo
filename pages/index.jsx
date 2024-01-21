@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import React from 'react'
-import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { allTags } from '../data/allTags.js'
 import Link from 'next/link.js'
+import cloudinary from '../utils/cloudinary.js'
 import HomeCarousel from '../components/HomeCarousel.jsx'
 
-const Home = () => {
+const Home = ({ images }) => {
   const longwoodImage =
     'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705612684/photo-repo/DSC_0152_zyedw1.jpg'
   const nemoursImage =
@@ -15,29 +15,7 @@ const Home = () => {
     'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705613275/photo-repo/DSC_1238_xfnhei.jpg'
   const brooklynImage =
     'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705611897/photo-repo/xsqfihksb9qpgr740f9s.jpg'
-  const [images, setImages] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'https://res.cloudinary.com/ddaymbzcc/image/list/favorites.json'
-        )
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-
-        const result = await response.json()
-        const { resources } = result
-        setImages(resources)
-      } catch (err) {
-        console.error('Failed to fetch images')
-      }
-    }
-
-    fetchData()
-  }, [])
   return (
     <>
       <Head>
@@ -131,4 +109,42 @@ const Home = () => {
     </>
   )
 }
+
+export async function getServerSideProps() {
+  try {
+    // Gets all images when "all" is specified
+
+    const results = await cloudinary.v2.search
+      .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/* AND tags=favorites`)
+      .sort_by('public_id', 'desc')
+      .max_results(400)
+      .execute()
+
+    let reducedResults = []
+
+    let i = 0
+    for (let result of results.resources) {
+      reducedResults.push({
+        id: i,
+        public_id: result.public_id,
+        format: result.format,
+      })
+      i++
+    }
+
+    return {
+      props: {
+        images: reducedResults,
+      },
+    }
+  } catch (error) {
+    console.error('Error in Cloudinary operations:', error)
+    return {
+      props: {
+        error: 'Failed to fetch images',
+      },
+    }
+  }
+}
+
 export default Home
