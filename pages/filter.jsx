@@ -14,7 +14,7 @@ const Filter = () => {
     try {
       const imageSet = new Set() // Use a Set to store unique images
       for (const tag of checkedTags) {
-        const response = await fetch(`https://res.cloudinary.com/ddaymbzcc/image/list/${tag}.json`)
+        const response = await fetch(`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`)
 
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.statusText}`)

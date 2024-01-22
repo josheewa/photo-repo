@@ -3,7 +3,10 @@
 @tailwind utilities;
 @import '~react-image-gallery/styles/css/image-gallery.css';
 
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading='lazy'] {
@@ -30,16 +33,18 @@
   }
 
   h2 {
-    @apply text-3xl;
+    @apply text-2xl sm:text-sm md:text-5xl 2xl:text-6xl;
   }
 
   p {
-    @apply text-sm;
+    @apply text-sm sm:text-xs md:text-base;
   }
+
   button:hover,
   a:hover {
     @apply cursor-pointer;
   }
+
   footer {
     @apply bg-gray-950 mt-auto h-auto p-3 text-center;
   }
@@ -52,21 +57,16 @@
   textarea {
     @apply text-black;
   }
-
-  @media screen and (max-width: 767px) {
-    h2 {
-      @apply text-sm;
-    }
-
-    p {
-      @apply text-xs;
-    }
-  }
 }
 
 @layer utilities {
   .logo {
-    font-family: 'Oxygen', sans-serif;
+    @apply text-3xl;
+    /* font-family: 'Oxygen', sans-serif; */
+    /* font-family: 'Allura', cursive; */
+    /* font-family: 'Pacifico', cursive; */
+    /* font-family: 'Great Vibes', cursive; */
+    /* font-family: cursive; */
   }
 
   .page-title {

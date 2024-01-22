@@ -25,7 +25,7 @@ export default TagCarousel
 const getAssets = async (startingImagePublicId, tag, format) => {
   try {
     // Fetch data from the Cloudinary JSON API
-    const response = await fetch(`https://res.cloudinary.com/ddaymbzcc/image/list/${tag}.json`)
+    const response = await fetch(`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`)
 
     // Check if the response is successful
     if (!response.ok) {
