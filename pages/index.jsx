@@ -72,7 +72,7 @@ const Home = ({ images }) => {
               </div>
             </div>
           </Link>
-          <Link id="brooklyn-banner" className="banner image-banner" href="/tags/brooklyn">
+          <Link id="brooklyn-banner" className="banner image-banner" href="/tags/brooklyn-botanic">
             <div className="banner-container">
               <Image
                 src={`${imgSrc(brooklynId)}`}
@@ -85,7 +85,7 @@ const Home = ({ images }) => {
               </div>
             </div>
           </Link>
-          <Link id="springlake-banner" className="banner image-banner" href="/tags/springlake">
+          <Link id="springlake-banner" className="banner image-banner" href="/tags/spring-lake">
             <div className="banner-container">
               <Image
                 src={`${imgSrc(springlakeId)}`}
