@@ -13,6 +13,7 @@
   html,
   body {
     @apply m-0 min-h-screen text-white;
+    font-family: 'Allura', cursive;
   }
 
   body {
@@ -43,12 +44,82 @@
 
 @layer utilities {
   .logo {
+<<<<<<< Updated upstream
     font-family: 'Oxygen', sans-serif;
+=======
+    /* @apply text-3xl; */
+    /* font-family: 'Oxygen', sans-serif; */
+    /* font-family: 'Allura', cursive; */
+    /* font-family: 'Pacifico', cursive; */
+    /* font-family: 'Great Vibes', cursive; */
+    /* font-family: cursive; */
+>>>>>>> Stashed changes
   }
 
   .page-title {
     @apply font-bold text-gray-400
   }
+
+  .vertical-text {
+    
+    transform: rotate(-90deg); /* Correct for upside-down rotation */
+  }
+
+  .banner {
+    /* Ensure the banner has a fixed height */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    /* overflow-y: hidden; */
+    /* white-space: nowrap; Prevent wrapping of child elements */
+    height: 30vh;
+  }
+  
+  .banner {
+    @apply flex;
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    background-color: #f0f0f0; /* Adjust background color as needed */
+    /* margin-bottom: 20px; Adjust margin between banners */
+  }
+  /* .img-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+  } */
+
+  /* .img-container Image,
+  .img-container div {
+    @apply h-[40vh];
+  } */
+
+  .img-banner-container {
+    @apply flex grid-rows-2;
+    flex: 0 0 auto;
+  }
+  .img-banner-container Image {
+    @apply h-auto;
+  }
+  .banner-content {
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); Adjust column size as needed */
+    /* gap: 10px; Adjust gap between items */
+    /* overflow-x: auto; */
+  /* width: 100%; Ensure the container takes full width */
+  }
+
+  
+  .vertical-label {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    padding: 10px;
+    color: #ffffff; /* Adjust text color */
+    background-color: #333333; /* Adjust background color */
+    height: 30vh;
+  }
+  .banner-content Image {
+    width: 100%; /* Adjust the width of the images */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
 }
 
 /* Email form styling */
