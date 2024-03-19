@@ -18,23 +18,24 @@
   }
 
   .tag-checkbox label {
-    @apply shine hover-translate relative inline-block cursor-pointer overflow-hidden rounded-md bg-gray-800 p-2 text-xs text-white sm:text-base md:text-base;
+    @apply shine tag-hover relative inline-block cursor-pointer overflow-hidden rounded-md border-[1px] bg-gray-800 p-2 text-xs text-white shadow-md shadow-gray-600 sm:text-base md:text-base;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 50%);
     transition: color 0.3s;
   }
 
   .tag-checkbox input[type='checkbox']:checked + label {
-    @apply shine-light bg-white text-black shadow-md;
+    @apply shine-light bg-white text-black shadow-md shadow-white;
   }
 
-  .hover-translate:has(.tag-label:hover) {
+  .tag-hover:has(.tag-label:hover) {
     transform: translateY(-1px);
   }
 
-  .hover-translate {
+  .tag-hover {
     transition: transform 0.5s ease;
   }
-  .hover-translate:hover {
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  .tag-hover:hover {
+    @apply shadow-md shadow-white;
   }
   /* Pseudo-element for the shine effect */
   .shine::after {
@@ -44,12 +45,7 @@
     left: 50%;
     width: 1px;
     height: 1px;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%);
     transition: all 0.5s;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
@@ -76,7 +72,7 @@
     left: 50%;
     width: 1px;
     height: 1px;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
     transition: all 0.5s;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;

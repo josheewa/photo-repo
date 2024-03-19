@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import '~react-image-gallery/styles/css/image-gallery.css';
 
-
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading='lazy'] {
     clip-path: inset(0.6px);
@@ -13,7 +12,6 @@
   font-family: 'orkney';
   src: url('/fonts/Orkney Light.otf') format('opentype');
 }
-
 
 @layer base {
   html,
@@ -39,7 +37,7 @@
   }
 
   p {
-    @apply text-xs ;
+    @apply text-xs;
   }
 
   button:hover,
@@ -82,10 +80,6 @@
     @apply my-2;
   }
 
-  .tag-banner {
-    @apply flex flex-col bg-gray-900 p-3 text-center;
-  }
-
   .img-banner-container {
     @apply flex grid-rows-2;
     flex: 0 0 auto;
@@ -93,20 +87,6 @@
   .img-banner-container Image {
     @apply h-auto;
   }
-  
-  .vertical-label {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    padding: 10px;
-    color: #ffffff; /* Adjust text color */
-    background-color: #333333; /* Adjust background color */
-    height: 30vh;
-  }
-  .banner-content Image {
-    width: 100%; /* Adjust the width of the images */
-    height: auto; /* Maintain the aspect ratio */
-  }
-  
 }
 
 /* Popup modal styling */

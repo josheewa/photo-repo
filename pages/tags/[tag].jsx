@@ -51,7 +51,7 @@ const Home = ({ images, tag }) => {
       </Head>
       <main className="mx-auto max-w-[1960px] p-4">
         <div className="tag-banner bg-gray-600">
-          <h2 className="banner-title text-white">Explore Other Tags</h2>
+          <h2 className="text-white">Explore Other Tags</h2>
           <div className="tag-list">
             {allTags.map(({ tag, name }) => (
               <Link className="tag-links" href={`/tags/${tag}`}>
