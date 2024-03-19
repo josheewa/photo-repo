@@ -1,0 +1,99 @@
+@tailwind components;
+
+@layer components {
+  .selector-list {
+    @apply flex list-none columns-3 flex-wrap justify-center gap-2 overflow-hidden py-3;
+  }
+
+  .tag-selector {
+    @apply bg-gray-950 flex flex-col p-2 py-5 text-center;
+  }
+
+  .tag-selector h2 {
+    @apply font-bold;
+  }
+  /* Hide default checkboxes */
+  .tag-checkbox input[type='checkbox'] {
+    @apply absolute opacity-0;
+  }
+
+  .tag-checkbox label {
+    @apply shine hover-translate relative inline-block cursor-pointer overflow-hidden rounded-md bg-gray-800 p-2 text-xs text-white sm:text-base md:text-base;
+    transition: color 0.3s;
+  }
+
+  .tag-checkbox input[type='checkbox']:checked + label {
+    @apply shine-light bg-white text-black shadow-md;
+  }
+
+  .hover-translate:has(.tag-label:hover) {
+    transform: translateY(-1px);
+  }
+
+  .hover-translate {
+    transition: transform 0.5s ease;
+  }
+  .hover-translate:hover {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+  /* Pseudo-element for the shine effect */
+  .shine::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transition: all 0.5s;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .shine:hover::after {
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .shine-light {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s;
+  }
+  .shine-light::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+    transition: all 0.5s;
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .shine-light:hover::after {
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .tag-list {
+    @apply flex list-none columns-3 flex-wrap justify-center gap-3 py-3;
+  }
+  .tag-links {
+    @apply shine overflow-hidden;
+  }
+}

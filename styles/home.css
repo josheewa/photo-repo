@@ -1,6 +1,15 @@
 @tailwind components;
 
 @layer components {
+
+  .home-banner {
+    @apply bg-contain font-bold;
+    background-image: url('https://res.cloudinary.com/ddaymbzcc/image/upload/c_auto,w_2000/photo-repo/DSC_1306_sqndxh');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .banner {
     @apply flex w-full border-y-[0.5px] border-white shadow-sm shadow-white;
   }

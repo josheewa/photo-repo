@@ -16,21 +16,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
           <Analytics />
-          <script
-            src="https://product-gallery.cloudinary.com/all.js"
-            type="text/javascript"></script>
-          <footer>
-            <p>&copy; 2023-2024 Joshua Chen. All rights reserved.</p>
-            <a href="https://www.flaticon.com/free-icons/picture" title="picture icons">
-              Picture icons created by Freepik - Flaticon
-            </a>
-            <a href="https://www.flaticon.com/free-icons/gmail" title="gmail icons">
-              Gmail icons created by Pixel perfect - Flaticon
-            </a>
-            <a href="https://www.flaticon.com/free-icons/instagram" title="instagram icons">
-              Instagram icons created by Freepik - Flaticon
-            </a>
-          </footer>
         </body>
       </Html>
     )

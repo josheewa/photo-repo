@@ -2,7 +2,7 @@ export const allTags = [
   { tag: 'astro', name: 'Astrophotography' },
   { tag: 'brooklyn-botanic', name: 'Brooklyn Botanic Garden' },
   { tag: 'city', name: 'City' },
-  { tag: 'dc', name: 'DC' },
+  { tag: 'dc', name: 'D.C.' },
   { tag: 'favorites', name: 'Favorites' },
   { tag: 'flowers', name: 'Flowers' },
   { tag: 'fountain-show', name: 'Fountain Show' },
@@ -15,8 +15,8 @@ export const allTags = [
   { tag: 'nyc', name: 'NYC' },
   // { tag: 'portraits', name: 'Portraits' },
   { tag: 'spring-lake', name: 'Spring Lake' },
-  { tag: 'sunset', name: 'Sunset' },
   { tag: 'sunrise', name: 'Sunrise' },
+  { tag: 'sunset', name: 'Sunset' },
   { tag: 'white-wing', name: 'White Wing Farm' },
   { tag: 'wildlife', name: 'Wildlife' },
-];
+]

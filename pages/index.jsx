@@ -1,209 +1,204 @@
-import Head from 'next/head'
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { allTags } from '../data/allTags.js'
-import Link from 'next/link.js'
-import cloudinary from '../utils/cloudinary.js'
-import HomeCarousel from '../components/HomeCarousel.jsx'
+import { allTags } from '../data/selectTags'
+import Head from 'next/head'
+import { IoMdClose } from 'react-icons/io'
+import { HiOutlineExternalLink } from 'react-icons/hi'
+import ImageGallery from 'react-image-gallery'
+import Link from 'next/link'
 
-const Home = ({ images }) => {
-  const longwoodId = 'DSC_0152_zyedw1.jpg'
-  const nemoursId = 'DSC_0851_xzbodl.jpg'
-  const springlakeId = 'DSC_1238_xfnhei.jpg'
-  const brooklynId = 'xsqfihksb9qpgr740f9s.jpg'
+const Filter = () => {
+  const [checkedTags, setCheckedTags] = useState(['favorites'])
+  const [images, setImages] = useState([])
 
-  // const longwoodImage =
-  //   'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705612684/photo-repo/DSC_0152_zyedw1.jpg'
-  // const nemoursImage =
-  //   'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705612811/photo-repo/DSC_0851_xzbodl.jpg'
-  // const springlakeImage =
-  //   'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705613275/photo-repo/DSC_1238_xfnhei.jpg'
-  // const brooklynImage =
-  //   'https://res.cloudinary.com/ddaymbzcc/image/upload/v1705611897/photo-repo/xsqfihksb9qpgr740f9s.jpg'
+  // Fetch images based on checked tags
+  const fetchImages = async () => {
+    try {
+      const imageSet = new Set() // Use a Set to store unique images
+      for (const tag of checkedTags) {
+        const response = await fetch(
+          `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`
+        )
 
-  const imgSrc = (id) => {
-    return `https://res.cloudinary.com/ddaymbzcc/image/upload/c_auto,w_1000,h_400/photo-repo/${id}`
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.statusText}`)
+        }
+
+        const data = await response.json()
+
+        // Extracts data from resources to display images and populate gallery
+        const imagesInfo = data.resources.map((resource) => ({
+          source: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_scale,w_720/${resource.public_id}.${resource.format}`,
+          original: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_1500,h_1000,b_auto/${resource.public_id}.${resource.format}`,
+          thumbnail: `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/c_pad,w_150,h_100,b_auto/${resource.public_id}.${resource.format}`,
+          public_id: resource.public_id,
+        }))
+
+        // Check for duplicates before adding to the Set
+        imagesInfo.forEach((image) => {
+          const isDuplicate = Array.from(imageSet).some(
+            (existingImage) => existingImage.public_id === image.public_id
+          )
+          if (!isDuplicate) {
+            imageSet.add(image)
+          }
+        })
+      }
+
+      // Convert Set back to an array
+      const uniqueImages = Array.from(imageSet)
+      setImages(uniqueImages)
+    } catch (error) {
+      console.error('Error fetching images:', error)
+    }
   }
+
+  const [openImage, setOpenImage] = useState(null)
+  const [galleryImages, setGalleryImages] = useState([])
+  const carouselRef = useRef(null)
+  const modalRef = useRef(null)
+
+  const handleCheckboxChange = (tag) => {
+    if (checkedTags.includes(tag)) {
+      setCheckedTags((prevTags) => prevTags.filter((checkedTag) => checkedTag !== tag))
+    } else {
+      setCheckedTags((prevTags) => [...prevTags, tag])
+    }
+  }
+
+  // Fetch images on component mount
+  useEffect(() => {
+    fetchImages()
+  }, [])
+  // Fetch images whenever checked tags change
+  useEffect(() => {
+    fetchImages()
+  }, [checkedTags])
+
+  // Sorts images by public_id so images aren't too grouped
+  const sortedImages = images.slice().sort((a, b) => a.public_id.localeCompare(b.public_id))
+
+  // Opens carousel modal
+  const handleImageClick = (public_id) => {
+    setOpenImage(public_id)
+    const startingImageIndex = sortedImages.findIndex((asset) => asset.public_id === public_id)
+    setGalleryImages([
+      ...sortedImages.slice(startingImageIndex),
+      ...sortedImages.slice(0, startingImageIndex),
+    ])
+  }
+
+  const closeModal = () => {
+    setOpenImage(null)
+  }
+
+  const handleOutsideClick = (e) => {
+    if (carouselRef.current && !carouselRef.current.contains(e.target)) {
+      closeModal()
+    }
+  }
+
+  const handleEscapeKey = (e) => {
+    if (e.key === 'Escape') {
+      closeModal()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick)
+    document.addEventListener('keydown', handleEscapeKey)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+      document.removeEventListener('keydown', handleEscapeKey)
+    }
+  }, [])
 
   return (
     <>
       <Head>
-        <title>PhotoRepo - Home</title>
+        <title>{`Photo Gallery - Filter`}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main>
-        <div className="home-container">
-          <div className="flex h-fit justify-center">
-            <div className="carousel-container">
-              <HomeCarousel className="p-2" images={images} />
-            </div>
-          </div>
-          <Link id="filter-banner" className="banner bg-gray-950 h-32" href="/filter">
-            <div className="banner-container">
-              <div className="banner-text">
-                <h2 className="">Browse all images by tags</h2>
-                <p className="banner-info">Select what tags to view in the dynamic tag selector</p>
+      <main className="mx-auto max-w-[1960px] p-4">
+        {/* Popup carousel display */}
+        {openImage && (
+          <>
+            <div className="blur"></div>
+            <div className="modal-container" ref={modalRef}>
+              <div className="popup-carousel-container" ref={carouselRef}>
+                <button className="close-btn" onClick={closeModal}>
+                  <IoMdClose className="" />
+                </button>
+                <ImageGallery
+                  items={galleryImages}
+                  autoPlay={false}
+                  showPlayButton={false}
+                  slideDuration={250}
+                />
               </div>
             </div>
-          </Link>
+          </>
+        )}
 
-          <Link id="longwood-banner" className="banner image-banner" href="/tags/longwood">
-            <div className="banner-container">
-              <Image
-                src={`${imgSrc(longwoodId)}`}
-                width={1000}
-                height={400}
-                className="banner-image"
-              />
-              <div className="banner-text bg-black">
-                <h2 className="banner-title ">Longwood Gardens</h2>
-              </div>
-            </div>
-          </Link>
-          <Link id="nemours-banner" className="banner image-banner" href="/tags/nemours">
-            <div className="banner-container">
-              <Image
-                src={`${imgSrc(nemoursId)}`}
-                width={1000}
-                height={400}
-                className="banner-image"
-              />
-              <div className="banner-text bg-blue-900 ">
-                <h2 className="banner-title">Nemours Estate</h2>
-              </div>
-            </div>
-          </Link>
-          <Link id="brooklyn-banner" className="banner image-banner" href="/tags/brooklyn-botanic">
-            <div className="banner-container">
-              <Image
-                src={`${imgSrc(brooklynId)}`}
-                width={1000}
-                height={400}
-                className="banner-image"
-              />
-              <div className="banner-text bg-purple-900">
-                <h2 className="banner-title ">Brooklyn Botanic Garden</h2>
-              </div>
-            </div>
-          </Link>
-          <Link id="springlake-banner" className="banner image-banner" href="/tags/spring-lake">
-            <div className="banner-container">
-              <Image
-                src={`${imgSrc(springlakeId)}`}
-                width={1000}
-                height={400}
-                className="banner-image"
-              />
-              <div className="banner-text bg-orange-900">
-                <h2 className="banner-title">Spring Lake Beach</h2>
-              </div>
-            </div>
-          </Link>
-
-          {/* <Link id="longwood-banner" className="banner bg-green-200" href="/tags/longwood">
-            <div className="banner-half">
-              <Image src={longwoodImage} width={1500} height={1000} className="banner-image" />
-            </div>
-            <div className="banner-half">
-              <div className="banner-text text-black">
-                <h2 className="banner-title">Longwood Gardens</h2>
-                <p className="banner-info">
-                  Stunning gardens with a vast assortment of floral displays and captivating
-                  nighttime fountain light shows.
-                </p>
-              </div>
-            </div>
-          </Link>
-          <Link id="nemours-banner" className="banner bg-blue-200" href="/tags/nemours">
-            <div className="banner-half">
-              <div className="banner-text text-black">
-                <h2 className="banner-title">Nemours Estate</h2>
-                <p className="banner-info">
-                  A historic 77-room mansion with 200 acres of elegant formal gardens, grounds, and
-                  woodlands.
-                </p>
-              </div>
-            </div>
-            <div className="banner-half">
-              <Image src={nemoursImage} width={1500} height={1000} className="banner-image" />
-            </div>
-          </Link>
-          <Link id="brooklyn-banner" className="banner bg-purple-200" href="/tags/brooklyn-botanic">
-            <div className="banner-half">
-              <Image src={brooklynImage} width={1500} height={1000} className="banner-image" />
-            </div>
-            <div className="banner-half">
-              <div className="banner-text text-black">
-                <h2 className="banner-title">Brooklyn Botanic Garden</h2>
-                <p className="banner-info">
-                  Botanic gardens tucked behind an urban cityscape, with countless flowers and
-                  gardens.
-                </p>
-              </div>
-            </div>
-          </Link>
-          <Link id="springlake-banner" className="banner bg-orange-200" href="/tags/spring-lake">
-            <div className="banner-half">
-              <div className="banner-text text-black">
-                <h2 className="banner-title">Spring Lake Beach</h2>
-                <p className="banner-info">
-                  Beautiful beach town with wonderful coastal views and mesmerizing sunrises and
-                  sunsets.
-                </p>
-              </div>
-            </div>
-            <div className="banner-half">
-              <Image src={springlakeImage} width={1500} height={1000} className="banner-image" />
-            </div>
-          </Link> */}
-          <div className="tag-banner bg-gray-900">
-            <h2 className="banner-title text-white">Explore Tags</h2>
-            <div className="tag-list">
-              {allTags.map(({ tag, name }) => (
-                <Link className="tag-links" href={`/tags/${tag}`}>
-                  <p>{name}</p>
-                </Link>
-              ))}
-            </div>
+        {/* Hello! I'm Joshua, an amateur photographer and developer. PhotoRepo is designed to display an assortment of my best photos. */}
+        <div className="home-banner relative flex h-[35vh] md:h-[40vh]">
+          <div className="home-banner-inner flex w-full flex-col items-center justify-center">
+            <h1 className="justify-center">PhotoRepo</h1>
+            <p className="text-xs">A small repository of my photos.</p>
+            <span className="">
+              <Link
+                className="shine-light m-2 flex flex-row items-center justify-center rounded-md bg-white p-1 px-2 text-black"
+                href="/tags/all">
+                <span className="h-full">Browse Photos</span>
+                <HiOutlineExternalLink className="m-1 h-full" />
+              </Link>
+            </span>
           </div>
+        </div>
+
+        <div className="tag-selector ">
+          <h2 className="selector-title text-white">Choose Your Own Collection</h2>
+          <div className="selector-list">
+            {allTags.map(({ tag, name }) => (
+              <div key={tag} className="tag-checkbox">
+                <input
+                  type="checkbox"
+                  id={tag}
+                  checked={checkedTags.includes(tag)}
+                  onChange={() => handleCheckboxChange(tag)}
+                />
+                <label htmlFor={tag}>
+                  <span className="tag-label">{name}</span>
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="img-container columns-2 gap-4 sm:columns-3 xl:columns-4 2xl:columns-5">
+          {sortedImages.length > 0 &&
+            sortedImages.map(({ id, source, public_id }) => (
+              <div key={id} onClick={() => handleImageClick(public_id)} role="button" tabIndex={0}>
+                <div className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-sm after:shadow-gray-700">
+                  <Image
+                    alt=""
+                    className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                    style={{ transform: 'translate3d(0, 0, 0)' }}
+                    src={source}
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw,
+                  (max-width: 1280px) 50vw,
+                  (max-width: 1536px) 33vw,
+                  25vw"
+                  />
+                </div>
+              </div>
+            ))}
         </div>
       </main>
     </>
   )
 }
-
-export async function getServerSideProps() {
-  try {
-    const results = await cloudinary.v2.search
-      .expression(`folder:${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/* AND tags=favorites`)
-      .sort_by('public_id', 'desc')
-      .max_results(400)
-      .execute()
-
-    let reducedResults = []
-
-    let i = 0
-    for (let result of results.resources) {
-      reducedResults.push({
-        id: i,
-        public_id: result.public_id,
-        format: result.format,
-      })
-      i++
-    }
-
-    return {
-      props: {
-        images: reducedResults,
-      },
-    }
-  } catch (error) {
-    console.error('Error in Cloudinary operations:', error)
-    return {
-      props: {
-        error: 'Failed to fetch images',
-      },
-    }
-  }
-}
-
-export default Home
+export default Filter
