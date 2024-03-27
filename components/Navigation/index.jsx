@@ -61,7 +61,7 @@ const Navigation = () => {
       <div className="nav-container ">
         <div className="nav container mx-auto flex h-full items-center justify-between px-4">
           <Logo className="fixed left-0" />
-          <div className="item-container flex-grow">
+          <div className="flex flex-grow justify-end">
             <ul className="menus hidden items-center justify-center gap-x-6 text-xl text-white md:flex">
               {menuItemsData.map((menu, index) => {
                 return <MenuItems items={menu} key={index} />
