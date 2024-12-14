@@ -31,6 +31,7 @@ yarn-error.log*
 # Miscellaneous
 .DS_Store
 *.pem
+/.vscode
 
 # Local environment files
 .env*.local
