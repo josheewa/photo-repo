@@ -146,10 +146,10 @@ const Filter = () => {
           <div className="flex w-full flex-col items-center justify-center">
             <h1 className="justify-center">A Repository For My Photos</h1>
             <Link
-              className="shine-light m-2 flex flex-row items-center justify-center rounded-md bg-white p-1 px-2 text-lg text-black"
-              href="/tags/all">
-              <span className="h-full">Browse Photos</span>
-              <HiOutlineExternalLink className="m-1 h-full" />
+              href="/tags/all"
+              className="browse-button">
+              <span>Browse Photos</span>
+              <HiOutlineExternalLink />
             </Link>
           </div>
         </div>

@@ -87,6 +87,42 @@
   .img-banner-container Image {
     @apply h-auto;
   }
+
+  .browse-button {
+    @apply relative flex flex-row items-center justify-center rounded-md bg-white p-2 px-4 text-lg text-black overflow-hidden;
+    transition: transform 0.2s ease;
+  }
+
+  .browse-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .browse-button span {
+    @apply relative z-10;
+  }
+
+  .browse-button::before {
+    content: '';
+    @apply absolute top-0 left-0 h-full w-0 bg-blue-500;
+    transition: width 0.3s ease;
+  }
+
+  .browse-button:hover::before {
+    @apply w-full;
+  }
+
+  .browse-button:hover {
+    @apply text-white;
+  }
+
+  .browse-button svg {
+    @apply relative z-10 ml-2 h-5 w-5;
+    transition: transform 0.2s ease;
+  }
+
+  .browse-button:hover svg {
+    transform: translateX(4px);
+  }
 }
 
 /* Popup modal styling */
@@ -229,4 +265,48 @@
       @apply block;
     }
   }
+}
+
+/* Add shine effects */
+.shine::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+  transition: all 0.5s;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.shine:hover::after {
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Tag banner styling */
+.tag-banner {
+  @apply flex flex-col p-2 py-5 text-center;
+}
+
+.tag-banner h2 {
+  @apply font-bold;
+}
+
+.tag-links {
+  @apply shine relative inline-block cursor-pointer overflow-hidden rounded-md border-[1px] border-gray-500 bg-gray-700 p-2 text-xs text-white shadow-md shadow-gray-600/50 font-semibold transition-transform sm:text-base md:text-base;
+}
+
+.tag-links:hover {
+  @apply shadow-md shadow-blue-400/30;
+  transform: translateY(-1px);
+}
+
+.tag-list {
+  @apply flex list-none flex-wrap justify-center gap-2 overflow-hidden py-3;
 }

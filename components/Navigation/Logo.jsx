@@ -9,7 +9,7 @@ const Logo = () => {
           <Image src="/logo.png" width={45} height={45} />
         </div>
 
-        <h1 className="logo text-3xl font-bold text-white">PhotoRepo</h1>
+        <h1 className="logo text-3xl font-bold text-white">Josh's PhotoRepo</h1>
       </Link>
     </>
   )
