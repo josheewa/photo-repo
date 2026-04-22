@@ -6,10 +6,10 @@ const Logo = () => {
     <>
       <Link href="/" className="flex items-center">
         <div className="relative overflow-hidden rounded-full bg-white">
-          <Image src="/logo.png" width={45} height={45} />
+          <Image src="/logo.png" width={45} height={45} alt="PhotoRepo logo" />
         </div>
 
-        <h1 className="logo text-3xl font-bold text-white">Josh's PhotoRepo</h1>
+        <h1 className="logo text-3xl font-bold text-white">Josh&apos;s PhotoRepo</h1>
       </Link>
     </>
   )
